@@ -1,0 +1,13 @@
+﻿@model List<StoreApp.Models.Product> 
+
+<html>
+    <head><title></title></head>
+    <body>
+        <ul>
+            @foreach (StoreApp.Models.Product prd in Model)
+            {
+                <li>@prd.ProductName @prd.Price</li>
+            }
+        </ul>
+    </body>
+</html>
