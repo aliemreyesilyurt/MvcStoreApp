@@ -1,13 +1,14 @@
-﻿@model List<StoreApp.Models.Product> 
+﻿@model List<Product>
 
-<html>
-    <head><title></title></head>
-    <body>
-        <ul>
-            @foreach (StoreApp.Models.Product prd in Model)
-            {
-                <li>@prd.ProductName @prd.Price</li>
-            }
-        </ul>
-    </body>
-</html>
+@section Footer {
+    <div>
+        Only for Index Footer
+    </div>
+}
+
+<div class="row my-3">
+    @foreach (Product prd in Model)
+    {
+        <partial name="~/Views/Product/Partials/_ProductCard.cshtml" model="@prd" />
+    }
+</div>
