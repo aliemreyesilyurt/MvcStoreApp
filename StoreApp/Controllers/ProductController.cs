@@ -18,5 +18,10 @@ namespace StoreApp.Controllers
             var products = _context.Products.ToList();
             return View(products);
         }
+        public IActionResult Get(int id)
+        {
+            Product product = _context.Products.First(p => p.Id == id);
+            return View(product);
+        }
     }
 }
