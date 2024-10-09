@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace StoreApp.Models
+namespace Repositories
 {
     public class RepositoryContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
         {
 
@@ -19,6 +21,12 @@ namespace StoreApp.Models
                     new Product() { Id = 3, ProductName = "Mouse", Price = 500 },
                     new Product() { Id = 4, ProductName = "Monitor", Price = 3_700 },
                     new Product() { Id = 5, ProductName = "Head Set", Price = 2_000 }
+                );
+
+            modelBuilder.Entity<Category>()
+                .HasData(
+                    new Category() { CategoryId = 1, CategoryName = "Book" },
+                    new Category() { CategoryId = 2, CategoryName = "Electronic" }
                 );
         }
     }

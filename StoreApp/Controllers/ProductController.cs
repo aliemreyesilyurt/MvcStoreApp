@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StoreApp.Models;
+using Repositories.Contracts;
 
 namespace StoreApp.Controllers
 {
     public class ProductController : Controller
     {
         //Dependency Injection
-        private readonly RepositoryContext _context;
+        private readonly IRepositoryManager _manager;
 
-        public ProductController(RepositoryContext context)
+        public ProductController(IRepositoryManager manager)
         {
-            _context = context;
+            _manager = manager;
         }
 
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
+            var products = _manager.Product.GetAllProducts(false);
             return View(products);
         }
         public IActionResult Get(int id)
         {
-            Product product = _context.Products.First(p => p.Id == id);
-            return View(product);
+            var model = _manager.Product.GetOneProduct(id, false);
+            return View(model);
         }
     }
 }
