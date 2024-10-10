@@ -5,9 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp", "StoreApp\StoreApp.csproj", "{DD48EFA5-082E-4038-80AA-1956B25FC724}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{A63C2E2F-A96D-4968-B9B4-7D2BB1FB1BA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{A63C2E2F-A96D-4968-B9B4-7D2BB1FB1BA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{8237725D-DE62-47F5-BCCA-8D46381CC2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{8237725D-DE62-47F5-BCCA-8D46381CC2C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{1E77DB92-7B08-43F7-AA33-01C7FDF70831}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8237725D-DE62-47F5-BCCA-8D46381CC2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8237725D-DE62-47F5-BCCA-8D46381CC2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8237725D-DE62-47F5-BCCA-8D46381CC2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E77DB92-7B08-43F7-AA33-01C7FDF70831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E77DB92-7B08-43F7-AA33-01C7FDF70831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E77DB92-7B08-43F7-AA33-01C7FDF70831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E77DB92-7B08-43F7-AA33-01C7FDF70831}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
