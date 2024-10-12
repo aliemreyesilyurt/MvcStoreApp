@@ -13,6 +13,32 @@ namespace Services
             _repositoryManager = repositoryManager;
         }
 
+        public void CreateProduct(Product product)
+        {
+            _repositoryManager.Product.CreateProduct(product);
+            _repositoryManager.Save();
+        }
+
+        public void UpdateOneProduct(Product product)
+        {
+            var entity = _repositoryManager.Product.GetOneProduct(product.Id, true);
+            entity.ProductName = product.ProductName;
+            entity.Price = product.Price;
+
+            _repositoryManager.Save();
+        }
+
+        public void DeleteOneProduct(int id)
+        {
+            var product = GetOneProduct(id, false);
+
+            if (product is not null)
+            {
+                _repositoryManager.Product.DeleteProduct(product);
+                _repositoryManager.Save();
+            }
+        }
+
         public IEnumerable<Product> GetAllProducts(bool trackChanges)
         {
             return _repositoryManager.Product.GetAllProducts(trackChanges);
@@ -27,5 +53,7 @@ namespace Services
 
             return product;
         }
+
+
     }
 }

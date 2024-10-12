@@ -9,6 +9,10 @@ namespace Repositories
         {
         }
 
+        public void CreateProduct(Product product) => Create(product);
+
+        public void DeleteProduct(Product product) => Delete(product);
+
         public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
 
         public Product? GetOneProduct(int id, bool trackChaanges)
