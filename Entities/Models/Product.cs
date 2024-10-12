@@ -1,9 +1,15 @@
-﻿namespace Entities.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.Models
 {
     public class Product
     {
         public int Id { get; set; }
-        public string? ProductName { get; set; } = String.Empty;
+
+        [Required(ErrorMessage = "Product name is required.")]
+        public string ProductName { get; set; }
+
+        [Required(ErrorMessage = "Price is required.")]
         public decimal Price { get; set; }
     }
 }
