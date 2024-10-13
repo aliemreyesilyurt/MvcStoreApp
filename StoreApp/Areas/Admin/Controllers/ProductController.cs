@@ -1,5 +1,4 @@
 ﻿using Entities.Dtos.Product;
-using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Services.Contracts;
@@ -16,22 +15,22 @@ namespace StoreApp.Areas.Admin.Controllers
             _manager = manager;
         }
 
+        // Get
         public IActionResult Index()
         {
             var model = _manager.ProductService.GetAllProducts(false);
             return View(model);
         }
 
+        // Get Create
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(_manager.CategoryService.GetAllCategories(false),
-                "CategoryId",
-                "CategoryName",
-                "1");
+            ViewBag.Categories = GetCategoreiesSelectList();
 
             return View();
         }
 
+        // Post Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([FromForm] ProductDtoForInsertion productDto)
@@ -44,36 +43,51 @@ namespace StoreApp.Areas.Admin.Controllers
             return View();
         }
 
+        // Get Update
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
-            var model = _manager.ProductService.GetOneProduct(id, false);
+            ViewBag.Categories = GetCategoreiesSelectList();
+
+            var model = _manager.ProductService.GetOneProductForUpdate(id, false);
             return View(model);
         }
 
+        // Post Update
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Product product)
+        public IActionResult Update([FromForm] ProductDtoForUpdate productDto)
         {
             if (ModelState.IsValid)
             {
-                _manager.ProductService.UpdateOneProduct(product);
+                _manager.ProductService.UpdateOneProduct(productDto);
                 return RedirectToAction("Index");
             }
             return View();
         }
 
+        // Get Delete
         public IActionResult Delete([FromRoute(Name = "id")] int id)
         {
             var model = _manager.ProductService.GetOneProduct(id, false);
             return View(model);
         }
 
+        // Post Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteProduct(int id)
         {
             _manager.ProductService.DeleteOneProduct(id);
             return RedirectToAction("Index");
+        }
+
+        // Methods
+        private SelectList GetCategoreiesSelectList()
+        {
+            return new SelectList(_manager.CategoryService.GetAllCategories(false),
+                "CategoryId",
+                "CategoryName",
+                "1");
         }
     }
 }
