@@ -11,5 +11,8 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "Price is required.")]
         public decimal Price { get; set; }
+
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }
