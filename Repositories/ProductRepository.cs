@@ -13,6 +13,8 @@ namespace Repositories
 
         public void DeleteProduct(Product product) => Delete(product);
 
+        public void UpdateOneProduct(Product entity) => Update(entity);
+
         public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
 
         public Product? GetOneProduct(int id, bool trackChaanges)
