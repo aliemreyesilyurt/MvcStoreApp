@@ -53,11 +53,17 @@ namespace StoreApp.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Summary")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -71,50 +77,64 @@ namespace StoreApp.Migrations
                         {
                             Id = 1,
                             CategoryId = 2,
+                            ImageUrl = "/images/1.jpg",
                             Price = 17000m,
-                            ProductName = "Computer"
+                            ProductName = "Computer",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
+                            ImageUrl = "/images/2.jpg",
                             Price = 1000m,
-                            ProductName = "Keyboard"
+                            ProductName = "Keyboard",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 2,
+                            ImageUrl = "/images/3.jpg",
                             Price = 500m,
-                            ProductName = "Mouse"
+                            ProductName = "Mouse",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 2,
+                            ImageUrl = "/images/4.jpg",
                             Price = 3700m,
-                            ProductName = "Monitor"
+                            ProductName = "Monitor",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 2,
+                            ImageUrl = "/images/5.jpg",
                             Price = 2000m,
-                            ProductName = "Head Set"
+                            ProductName = "Head Set",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 1,
+                            ImageUrl = "/images/6.jpg",
                             Price = 75m,
-                            ProductName = "History"
+                            ProductName = "History",
+                            Summary = ""
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 1,
+                            ImageUrl = "/images/7.jpg",
                             Price = 100m,
-                            ProductName = "Hamlet"
+                            ProductName = "Hamlet",
+                            Summary = ""
                         });
                 });
 
