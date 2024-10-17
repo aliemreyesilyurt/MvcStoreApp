@@ -11,7 +11,7 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Subtotal</th>
+                <th colspan="2">Subtotal</th>
             </tr>
         </thead>
         <tbody>
@@ -38,8 +38,14 @@
         <tfoot>
             <tr>
                 <td colspan="3" class="text-right">Total : </td>
-                <td class="text-right text-danger">@Model.Cart?.ComputeTotalValue().ToString("c2")</td>
+                <td colspan="2" class="text-right text-danger">@Model.Cart?.ComputeTotalValue().ToString("c2")</td>
             </tr>
         </tfoot>
     </table>
+    <div class="text-center my-3">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="@Model?.ReturnUrl">Continue Shopping</a>
+            <a class="btn btn-primary mx-2" asp-action="Checkout" asp-controller="Order">Checkout</a>
+        </div>
+    </div>
 </div>
