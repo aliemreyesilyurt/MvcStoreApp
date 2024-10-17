@@ -1,0 +1,16 @@
+﻿@page
+@model StoreApp.Pages.DemoModel
+@{
+}
+
+<div class="my-5 text-center">
+    <h6 class="display-6">Hello  @Model?.FullName</h6>
+
+    <form asp-page="/demo" method="post">
+        <div class="form-group">
+            <input class="form-control" placeholder="Enter your name" name="name"/>
+            <input type="submit" class="btn btn-primary my-3" value="Send" />
+        </div>
+    </form>
+
+</div>

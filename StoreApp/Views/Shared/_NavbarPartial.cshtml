@@ -24,7 +24,7 @@
 
                     <a class="nav-link icon-link" asp-page="/Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        Cart
+                        Cart (@await Component.InvokeAsync("CartSummary"))
                     </a>
                 </li>
                 <li class="nav-item">
