@@ -2,10 +2,18 @@
 
 <div>
     <ul class="list-group my-3">
+        <li class="list-group-item">
+            <a asp-action="Index">
+                All
+            </a>
+        </li>
         @foreach (var cat in Model)
         {
             <li class="list-group-item">
-                @cat.CategoryName
+                <a asp-action="Index" asp-route-categoryId="@cat.CategoryId">
+                    @cat.CategoryName
+                </a>
+
             </li>
         }
     </ul>

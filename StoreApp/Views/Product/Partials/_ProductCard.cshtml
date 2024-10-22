@@ -2,26 +2,34 @@
 
 <div class="col-sm-12 col-md-6 col-xl-4 my-3">
     <div class="card" style="width: 18rem;">
+        <div class="card-header text-center">
+            @Model.ProductName
+        </div>
+
         <img src="@Model?.ImageUrl" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">@Model.ProductName</h5>
-            <p class="card-text">@Model.Price.ToString("c")</p>
-
-            <div>
-                <a class="btn btn-primary" asp-action="Get" asp-route-id="@Model.Id">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    Details
-                </a>
-
+            <div class="card-text">
+                <div class="text-danger text-center lead p-2 rounded-2">
+                    @Model?.Price.ToString("c")
+                </div>
+            </div>
+            <p class="card-text">@Model?.Summary</p>
+            <div class="d-flex justify-content-end">
                 <form id="@Model.Id" asp-page="/cart" method="post">
-                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="Id" />
                     <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                    <button type="submit" class="btn btn-outline-primary">
-                        <i class="fa-solid fa-cart-plus"></i>
-                    </button>
+
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-outline-primary rounded" asp-controller="Product" asp-action="Get" asp-route-id="@Model.Id">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <button type="submit" class="btn btn-primary mx-1 rounded">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
-            
         </div>
     </div>
 </div>
