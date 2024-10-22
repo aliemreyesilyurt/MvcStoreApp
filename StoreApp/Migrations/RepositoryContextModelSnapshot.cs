@@ -124,6 +124,9 @@ namespace StoreApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("ShowCase")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Summary")
                         .HasColumnType("TEXT");
 
@@ -141,6 +144,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/1.jpg",
                             Price = 17000m,
                             ProductName = "Computer",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
@@ -150,6 +154,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/2.jpg",
                             Price = 1000m,
                             ProductName = "Keyboard",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
@@ -159,6 +164,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/3.jpg",
                             Price = 500m,
                             ProductName = "Mouse",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
@@ -168,6 +174,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/4.jpg",
                             Price = 3700m,
                             ProductName = "Monitor",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
@@ -177,6 +184,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/5.jpg",
                             Price = 2000m,
                             ProductName = "Head Set",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
@@ -186,6 +194,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/6.jpg",
                             Price = 75m,
                             ProductName = "History",
+                            ShowCase = false,
                             Summary = ""
                         },
                         new
@@ -195,6 +204,37 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/7.jpg",
                             Price = 100m,
                             ProductName = "Hamlet",
+                            ShowCase = false,
+                            Summary = ""
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 1,
+                            ImageUrl = "/images/6.jpg",
+                            Price = 170m,
+                            ProductName = "Sefiller",
+                            ShowCase = false,
+                            Summary = ""
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 2,
+                            ImageUrl = "/images/1.jpg",
+                            Price = 20000m,
+                            ProductName = "PC X10",
+                            ShowCase = false,
+                            Summary = ""
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 2,
+                            ImageUrl = "/images/2.jpg",
+                            Price = 300m,
+                            ProductName = "Mechanic Keyboard",
+                            ShowCase = false,
                             Summary = ""
                         });
                 });

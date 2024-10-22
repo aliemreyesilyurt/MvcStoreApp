@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.RequestParameters;
+using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 
 namespace StoreApp.Controllers
@@ -13,9 +14,9 @@ namespace StoreApp.Controllers
             _serviceManager = serviceManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(ProductRequestParameters p)
         {
-            var products = _serviceManager.ProductService.GetAllProducts(false);
+            var products = _serviceManager.ProductService.GetAllProductsWithDetails(p);
             return View(products);
         }
         public IActionResult Get([FromRoute(Name = "id")] int id)

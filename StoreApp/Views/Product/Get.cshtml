@@ -15,21 +15,21 @@
 </div>
 
 <div class="text-center">
-    <div class="btn-group">
-        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">
-            <i class="fa-solid fa-house"></i>
-            Home
-        </a>
-        <form id="@Model.Id" asp-page="/cart" method="post">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+    <form id="@Model.Id" asp-page="/cart" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <div class="btn-group" role="group">
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
             <button type="submit" class="btn btn-outline-primary">
                 <i class="fa-solid fa-cart-plus"></i>
             </button>
-        </form>
-        <a class="btn btn-outline-primary" asp-controller="Product" asp-action="Index">
-            <i class="fa-solid fa-list"></i>
-            Products
-        </a>
-    </div>
+            <a class="btn btn-outline-primary" asp-controller="Product" asp-action="Index">
+                <i class="fa-solid fa-list"></i>
+                Products
+            </a>
+        </div>
+    </form>
 </div>

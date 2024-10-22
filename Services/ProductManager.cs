@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Dtos.Product;
 using Entities.Models;
+using Entities.RequestParameters;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -62,6 +63,12 @@ namespace Services
             return _repositoryManager.Product.GetAllProducts(trackChanges);
         }
 
+        // Get All With Details
+        public IEnumerable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
+        {
+            return _repositoryManager.Product.GetAllProductsWithDetails(p);
+        }
+
         // Get One
         public Product? GetOneProduct(int id, bool trackChanges)
         {
@@ -71,6 +78,12 @@ namespace Services
                 throw new Exception("Product not found!");
 
             return product;
+        }
+
+        // Get Showcase
+        public IEnumerable<Product> GetShowcasesProducts(bool trackChanges)
+        {
+            return _repositoryManager.Product.GetShowcasesProducts(trackChanges);
         }
     }
 }
