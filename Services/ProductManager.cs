@@ -85,5 +85,15 @@ namespace Services
         {
             return _repositoryManager.Product.GetShowcasesProducts(trackChanges);
         }
+
+        // Get Lastest
+        public IEnumerable<Product> GetLastestProducts(int n, bool trackChanges)
+        {
+            return _repositoryManager
+                .Product
+                .FindAll(trackChanges)
+                .OrderByDescending(prd => prd.Id)
+                .Take(n);
+        }
     }
 }
