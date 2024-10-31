@@ -214,7 +214,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/6.jpg",
                             Price = 170m,
                             ProductName = "Sefiller",
-                            ShowCase = false,
+                            ShowCase = true,
                             Summary = ""
                         },
                         new
@@ -224,7 +224,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/1.jpg",
                             Price = 20000m,
                             ProductName = "PC X10",
-                            ShowCase = false,
+                            ShowCase = true,
                             Summary = ""
                         },
                         new
@@ -234,7 +234,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/2.jpg",
                             Price = 300m,
                             ProductName = "Mechanic Keyboard",
-                            ShowCase = false,
+                            ShowCase = true,
                             Summary = ""
                         });
                 });

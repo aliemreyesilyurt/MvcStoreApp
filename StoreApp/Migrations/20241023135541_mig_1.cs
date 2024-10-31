@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StoreApp.Migrations
 {
-    public partial class init : Migration
+    public partial class mig_1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -139,17 +139,17 @@ namespace StoreApp.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
-                values: new object[] { 8, 1, "/images/6.jpg", 170m, "Sefiller", false, "" });
+                values: new object[] { 8, 1, "/images/6.jpg", 170m, "Sefiller", true, "" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
-                values: new object[] { 9, 2, "/images/1.jpg", 20000m, "PC X10", false, "" });
+                values: new object[] { 9, 2, "/images/1.jpg", 20000m, "PC X10", true, "" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
-                values: new object[] { 10, 2, "/images/2.jpg", 300m, "Mechanic Keyboard", false, "" });
+                values: new object[] { 10, 2, "/images/2.jpg", 300m, "Mechanic Keyboard", true, "" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartLine_OrderId",
