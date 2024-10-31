@@ -11,8 +11,8 @@ using Repositories;
 namespace StoreApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20241022080859_init")]
-    partial class init
+    [Migration("20241023135541_mig_1")]
+    partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -216,7 +216,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/6.jpg",
                             Price = 170m,
                             ProductName = "Sefiller",
-                            ShowCase = false,
+                            ShowCase = true,
                             Summary = ""
                         },
                         new
@@ -226,7 +226,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/1.jpg",
                             Price = 20000m,
                             ProductName = "PC X10",
-                            ShowCase = false,
+                            ShowCase = true,
                             Summary = ""
                         },
                         new
@@ -236,7 +236,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/2.jpg",
                             Price = 300m,
                             ProductName = "Mechanic Keyboard",
-                            ShowCase = false,
+                            ShowCase = true,
                             Summary = ""
                         });
                 });
