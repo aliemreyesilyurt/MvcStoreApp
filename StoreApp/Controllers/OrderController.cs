@@ -9,10 +9,10 @@ namespace StoreApp.Controllers
         private readonly IServiceManager _manager;
         private readonly Cart _cart;
 
-        public OrderController(IServiceManager manager, Cart cart)
+        public OrderController(IServiceManager manager, Cart cartService)
         {
             _manager = manager;
-            _cart = cart;
+            _cart = cartService;
         }
 
         public IActionResult Checkout() => View(new Order());
