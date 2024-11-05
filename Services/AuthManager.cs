@@ -37,7 +37,7 @@ namespace Services
                 if (!roleResult.Succeeded)
                     throw new Exception("System has problems with roles!");
             }
-            else
+            else if (userDto.Roles.Count == 0)
             {
                 var roleResult = await _userManager.AddToRoleAsync(user, "User");
                 if (!roleResult.Succeeded)
@@ -51,6 +51,55 @@ namespace Services
         {
             var users = _userManager.Users.ToList();
             return users;
+        }
+
+        public async Task<IdentityUser> GetOneUser(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
+
+        public async Task<UserDtoForUpdate> GetOneUserForUpdate(string userName)
+        {
+            var user = await GetOneUser(userName);
+
+            if (user is not null)
+            {
+                var userDto = _mapper.Map<UserDtoForUpdate>(user);
+                //userDto.Roles = new HashSet<string>(Roles.Select(r => r.Name).ToList());
+                userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user));
+
+                return userDto;
+            }
+            throw new Exception("An error occured!");
+        }
+
+        public async Task UpdateOneUser(string id, UserDtoForUpdate userDto)
+        {
+            var user = await GetOneUser(id);
+            user.UserName = userDto.Username;
+            user.Email = userDto.Email;
+            user.PhoneNumber = userDto.PhoneNumber;
+
+            if (user is not null)
+            {
+                var result = await _userManager.UpdateAsync(user);
+
+                if (!result.Succeeded)
+                    throw new Exception("User could not be updated!");
+
+                if (userDto.Roles.Count > 0)
+                {
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    await _userManager.RemoveFromRolesAsync(user, userRoles);
+
+                    var roleResult = await _userManager.AddToRolesAsync(user, userDto.Roles);
+                    if (!roleResult.Succeeded)
+                        throw new Exception("System has problems with roles!");
+                }
+                return;
+            }
+            throw new Exception("System has problem with user update!");
+
         }
     }
 }

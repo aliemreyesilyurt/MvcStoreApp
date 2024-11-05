@@ -1,13 +1,14 @@
-﻿@model UserDtoForCreation
+﻿@model UserDtoForUpdate
 
 <div class="text-center">
-    <div class="display-6">Create User</div>
+    <div class="display-6">Edit (@Model.Username)</div>
 </div>
 
-<form method="post" asp-action="Create">
-    
+<form method="post" asp-action="Update">
+
     <div class="row">
         <div class="text-danger" asp-validation-summary="All"></div>
+
         <div class="col-md-6">
             <div class="form-group my-3">
                 <label asp-for="Username"></label>
@@ -20,11 +21,6 @@
             </div>
 
             <div class="form-group my-3">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-            </div>
-
-            <div class="form-group my-3">
                 <label asp-for="PhoneNumber"></label>
                 <input asp-for="PhoneNumber" class="form-control" />
             </div>
@@ -33,9 +29,9 @@
                 <div class="btn-group d-flex justify-content-end">
                     <button class="btn btn-primary" type="submit">
                         <i class="fa-solid fa-plus"></i>
-                        Create
+                        Save Changes
                     </button>
-                    <button asp-action="Index" class="btn btn-outline-primary">
+                    <button class="btn btn-outline-primary"  asp-action="Index" asp-route-id="@Model.Username">
                         <i class="fa-solid fa-arrow-left"></i>
                         Back
                     </button>
@@ -48,7 +44,11 @@
                 @foreach (var item in ViewBag.Roles)
                 {
                     <div class="form-check my-2">
-                        <input class="form-check-input" type="checkbox" name="Roles" value="@item" />
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="Roles"
+                               checked ="@(Model.UserRoles.Contains(item))"
+                               value="@item" />
                         <label class="form-check-label">@item</label>
                     </div>
                 }
@@ -60,4 +60,3 @@
         </div>
     </div>
 </form>
-
