@@ -53,14 +53,14 @@ namespace Services
             return users;
         }
 
-        public async Task<IdentityUser> GetOneUser(string id)
+        public async Task<IdentityUser> GetOneUserById(string id)
         {
             return await _userManager.FindByIdAsync(id);
         }
 
-        public async Task<UserDtoForUpdate> GetOneUserForUpdate(string userName)
+        public async Task<UserDtoForUpdate> GetOneUserForUpdate(string id)
         {
-            var user = await GetOneUser(userName);
+            var user = await GetOneUserById(id);
 
             if (user is not null)
             {
@@ -73,9 +73,22 @@ namespace Services
             throw new Exception("An error occured!");
         }
 
+        public async Task<IdentityResult> ResetPassword(ResetPasswordDto model)
+        {
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user is not null)
+            {
+                var removePassResult = await _userManager.RemovePasswordAsync(user);
+                var result = await _userManager.AddPasswordAsync(user, model.Password);
+
+                return result;
+            }
+            throw new Exception("User coudl not be found!");
+        }
+
         public async Task UpdateOneUser(string id, UserDtoForUpdate userDto)
         {
-            var user = await GetOneUser(id);
+            var user = await GetOneUserById(id);
             user.UserName = userDto.Username;
             user.Email = userDto.Email;
             user.PhoneNumber = userDto.PhoneNumber;

@@ -70,5 +70,34 @@ namespace StoreApp.Areas.Admin.Controllers
             ViewBag.Roles = Roles;
             return View(userDto);
         }
+
+        public IActionResult ResetPassword([FromRoute(Name = "id")] string id)
+        {
+            return View(new ResetPasswordDto()
+            {
+                UserName = id,
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _manager.AuthService.ResetPassword(model);
+
+                if (result.Succeeded)
+                    RedirectToAction("Index");
+                else
+                {
+                    foreach (var err in result.Errors)
+                    {
+                        ModelState.AddModelError("Error", err.Description);
+                    }
+                }
+            }
+            return View();
+        }
     }
 }

@@ -8,8 +8,9 @@ namespace Services.Contracts
         IEnumerable<IdentityRole> Roles { get; }
         IEnumerable<IdentityUser> GetAllUsers();
         Task<UserDtoForUpdate> GetOneUserForUpdate(string id);
-        Task<IdentityUser> GetOneUser(string userName);
+        Task<IdentityUser> GetOneUserById(string userName);
         Task<IdentityResult> CreateUser(UserDtoForCreation userDto);
         Task UpdateOneUser(string id, UserDtoForUpdate userDto);
+        Task<IdentityResult> ResetPassword(ResetPasswordDto model);
     }
 }
