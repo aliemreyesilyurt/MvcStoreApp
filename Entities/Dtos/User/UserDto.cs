@@ -6,8 +6,8 @@ namespace Entities.Dtos.User
     public record UserDto
     {
         [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Username is required!")]
-        public string? Username { get; init; }
+        [Required(ErrorMessage = "UserName is required!")]
+        public string? UserName { get; init; }
 
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Email is required!")]

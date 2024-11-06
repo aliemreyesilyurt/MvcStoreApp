@@ -4,7 +4,8 @@ namespace Entities.Dtos.User
 {
     public record ResetPasswordDto
     {
-        public string? UserName { get; init; }
+        [Required(ErrorMessage = "UserName is required!")]
+        public string UserName { get; init; }
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Password is required!")]

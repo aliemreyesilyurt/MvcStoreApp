@@ -71,6 +71,17 @@ namespace StoreApp.Areas.Admin.Controllers
             return View(userDto);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete([FromForm] UserDto userDto)
+        {
+            var result = await _manager.AuthService.DeleteOneUser(userDto.UserName);
+
+            return result.Succeeded
+                ? RedirectToAction("Index")
+                : View();
+        }
+
         public IActionResult ResetPassword([FromRoute(Name = "id")] string id)
         {
             return View(new ResetPasswordDto()

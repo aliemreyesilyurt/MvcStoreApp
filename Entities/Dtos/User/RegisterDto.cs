@@ -4,7 +4,7 @@ namespace Entities.Dtos.User
 {
     public record RegisterDto
     {
-        [Required(ErrorMessage = "Username is required!")]
+        [Required(ErrorMessage = "UserName is required!")]
         public string? Username { get; init; }
 
         [Required(ErrorMessage = "Email is required!")]

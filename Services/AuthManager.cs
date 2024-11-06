@@ -23,6 +23,7 @@ namespace Services
         public IEnumerable<IdentityRole> Roles =>
             _roleManager.Roles;
 
+        // Create
         public async Task<IdentityResult> CreateUser(UserDtoForCreation userDto)
         {
             var user = _mapper.Map<IdentityUser>(userDto);
@@ -47,71 +48,91 @@ namespace Services
             return result;
         }
 
+        // Get All
         public IEnumerable<IdentityUser> GetAllUsers()
         {
             var users = _userManager.Users.ToList();
             return users;
         }
 
-        public async Task<IdentityUser> GetOneUserById(string id)
+        // Get One By UserName
+        public async Task<IdentityUser> GetOneUserByUsername(string userName)
         {
-            return await _userManager.FindByIdAsync(id);
+            var user = await _userManager.FindByNameAsync(userName);
+            if (user is not null)
+                return user;
+
+            throw new Exception("User could not be found!");
         }
 
+        // Get One By Id
+        public async Task<IdentityUser> GetOneUserById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user is not null)
+                return user;
+
+            throw new Exception("User could not be found!");
+
+        }
+
+        // Get One For Update
         public async Task<UserDtoForUpdate> GetOneUserForUpdate(string id)
         {
             var user = await GetOneUserById(id);
 
-            if (user is not null)
-            {
-                var userDto = _mapper.Map<UserDtoForUpdate>(user);
-                //userDto.Roles = new HashSet<string>(Roles.Select(r => r.Name).ToList());
-                userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user));
+            var userDto = _mapper.Map<UserDtoForUpdate>(user);
+            userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user));
 
-                return userDto;
-            }
-            throw new Exception("An error occured!");
+            return userDto;
+
         }
 
-        public async Task<IdentityResult> ResetPassword(ResetPasswordDto model)
-        {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user is not null)
-            {
-                var removePassResult = await _userManager.RemovePasswordAsync(user);
-                var result = await _userManager.AddPasswordAsync(user, model.Password);
-
-                return result;
-            }
-            throw new Exception("User coudl not be found!");
-        }
-
+        // Update
         public async Task UpdateOneUser(string id, UserDtoForUpdate userDto)
         {
             var user = await GetOneUserById(id);
-            user.UserName = userDto.Username;
+            user.UserName = userDto.UserName;
             user.Email = userDto.Email;
             user.PhoneNumber = userDto.PhoneNumber;
 
-            if (user is not null)
+            var updateResult = await _userManager.UpdateAsync(user);
+
+            if (!updateResult.Succeeded)
+                throw new Exception("User could not be updated!");
+
+            if (userDto.Roles.Count > 0)
             {
-                var result = await _userManager.UpdateAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
+                await _userManager.RemoveFromRolesAsync(user, userRoles);
 
-                if (!result.Succeeded)
-                    throw new Exception("User could not be updated!");
-
-                if (userDto.Roles.Count > 0)
-                {
-                    var userRoles = await _userManager.GetRolesAsync(user);
-                    await _userManager.RemoveFromRolesAsync(user, userRoles);
-
-                    var roleResult = await _userManager.AddToRolesAsync(user, userDto.Roles);
-                    if (!roleResult.Succeeded)
-                        throw new Exception("System has problems with roles!");
-                }
-                return;
+                var roleResult = await _userManager.AddToRolesAsync(user, userDto.Roles);
+                if (!roleResult.Succeeded)
+                    throw new Exception("System has problems with roles!");
             }
-            throw new Exception("System has problem with user update!");
+        }
+
+        // Delete
+        public async Task<IdentityResult> DeleteOneUser(string userName)
+        {
+            var user = await GetOneUserByUsername(userName);
+            var deleteResult = await _userManager.DeleteAsync(user);
+
+            if (!deleteResult.Succeeded)
+                throw new Exception("User could not be deleted!");
+
+            return deleteResult;
+        }
+
+        // Reset Password
+        public async Task<IdentityResult> ResetPassword(ResetPasswordDto model)
+        {
+            var user = await GetOneUserByUsername(model.UserName);
+
+            var removePassResult = await _userManager.RemovePasswordAsync(user);
+            var result = await _userManager.AddPasswordAsync(user, model.Password);
+
+            return result;
 
         }
     }
