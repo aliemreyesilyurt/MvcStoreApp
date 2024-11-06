@@ -11,6 +11,7 @@ builder.Services.ConfigureSession(); //Session Configuration
 builder.Services.ConfigureRepositoryRegistration(); //Repositories Configuration
 builder.Services.ConfigureServiceRegistration(); //Services Configuration
 builder.Services.ConfigureRouting();
+builder.Services.ConfigureApplicationCookie();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -22,8 +23,8 @@ app.UseSession();
 app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
