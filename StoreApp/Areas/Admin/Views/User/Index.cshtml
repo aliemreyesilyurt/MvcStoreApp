@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IdentityUser>
+
+<div class="text-center">
+    <div class="display-6">Users</div>
+</div>
+
+<div class="d-flex justify-content-end my-3">
+    <a class="btn btn-outline-success" asp-action="Create">
+        <i class="fa fa-plus"></i>
+        Create
+    </a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (IdentityUser user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td user-name="@user.UserName" user-role="">.</td>
+                <td>
+                    <div>
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="UserName" value="@user.UserName" />
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-warning" asp-action="Update" asp-route-id="@user.Id">Edit</a>
+                                <a class="btn btn-sm btn-info" asp-action="ResetPassword" asp-route-id="@user.UserName">Reset Password</a>
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirmDelete();">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this user?');
+    }
+</script>

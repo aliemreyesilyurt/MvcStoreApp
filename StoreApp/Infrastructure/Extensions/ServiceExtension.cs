@@ -1,4 +1,6 @@
 ﻿using Entities.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
@@ -15,9 +17,25 @@ namespace StoreApp.Infrastructure.Extensions
             services.AddDbContext<RepositoryContext>(options =>
             {
                 options.UseSqlite(configuration.GetConnectionString("sqlconnection"),
-                b => b.MigrationsAssembly("StoreApp")
-                    );
+                b => b.MigrationsAssembly("StoreApp"));
+
+                options.EnableSensitiveDataLogging(true);
+                //When switching to the product environment, this property will be false
             });
+        }
+
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 10;
+            })
+            .AddEntityFrameworkStores<RepositoryContext>();
         }
 
         public static void ConfigureSession(this IServiceCollection services)
@@ -46,6 +64,7 @@ namespace StoreApp.Infrastructure.Extensions
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<IAuthService, AuthManager>();
         }
 
         public static void ConfigureRouting(this IServiceCollection services)
@@ -54,6 +73,17 @@ namespace StoreApp.Infrastructure.Extensions
             {
                 options.LowercaseUrls = true;
                 options.AppendTrailingSlash = false;
+            });
+        }
+
+        public static void ConfigureApplicationCookie(this IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/Account/Login");
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.AccessDeniedPath = new PathString("/Account/AccessDenied");
             });
         }
     }

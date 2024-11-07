@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 
@@ -9,12 +10,13 @@ namespace StoreApp.Controllers
         private readonly IServiceManager _manager;
         private readonly Cart _cart;
 
-        public OrderController(IServiceManager manager, Cart cart)
+        public OrderController(IServiceManager manager, Cart cartService)
         {
             _manager = manager;
-            _cart = cart;
+            _cart = cartService;
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult Checkout() => View(new Order());
 
         [HttpPost]
