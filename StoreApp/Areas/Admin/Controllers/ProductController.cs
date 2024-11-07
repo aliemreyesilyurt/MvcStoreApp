@@ -63,6 +63,7 @@ namespace StoreApp.Areas.Admin.Controllers
                 productDto.ImageUrl = String.Concat("/images/", file.FileName);
 
                 _manager.ProductService.CreateProduct(productDto);
+                TempData["success"] = $"{productDto.ProductName} has been created.";
                 return RedirectToAction("Index");
             }
             return View();
