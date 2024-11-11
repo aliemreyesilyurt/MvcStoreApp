@@ -31,7 +31,7 @@ namespace StoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await _userManager.FindByNameAsync(model.Name);
+                IdentityUser user = await _userManager.FindByNameAsync(model.UserName);
                 if (user is not null)
                 {
                     await _signInManager.SignOutAsync();
@@ -61,30 +61,33 @@ namespace StoreApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromForm] RegisterDto model)
         {
-            var user = new IdentityUser
+            if (ModelState.IsValid)
             {
-                UserName = model.Username,
-                Email = model.Email,
-            };
-
-            var result = await _userManager
-                .CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
-            {
-                var roleResult = await _userManager
-                    .AddToRoleAsync(user, "User");
-
-                if (roleResult.Succeeded)
+                var user = new IdentityUser
                 {
-                    return RedirectToAction("Login", new { ReturnUrl = "/" });
+                    UserName = model.UserName,
+                    Email = model.Email,
+                };
+
+                var result = await _userManager
+                    .CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    var roleResult = await _userManager
+                        .AddToRoleAsync(user, "User");
+
+                    if (roleResult.Succeeded)
+                    {
+                        return RedirectToAction("Login", new { ReturnUrl = "/" });
+                    }
                 }
-            }
-            else
-            {
-                foreach (var err in result.Errors)
+                else
                 {
-                    ModelState.AddModelError("Error", err.Description);
+                    foreach (var err in result.Errors)
+                    {
+                        ModelState.AddModelError("Error", err.Description);
+                    }
                 }
             }
 

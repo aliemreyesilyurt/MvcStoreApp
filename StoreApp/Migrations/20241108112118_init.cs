@@ -195,7 +195,7 @@ namespace StoreApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Summary = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Summary = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     ShowCase = table.Column<bool>(type: "bit", nullable: false)
@@ -241,9 +241,9 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "02918df8-378a-4620-b7b5-f40a1d5fe36e", "64bad4ee-257c-4f66-8e52-42f6794cbe7d", "Admin", "ADMIN" },
-                    { "a817f9b3-9369-4d48-9f04-2280139a7513", "3140014b-5366-43c4-b9fe-fcd263f47e20", "User", "USER" },
-                    { "dfa9012f-1b4b-49d1-ada2-e7beeab81ba0", "e4c2f956-6bb5-4b4c-948d-692c2063b586", "Editor", "EDITOR" }
+                    { "70120be2-223e-4965-9207-d5d213674b43", "e1adcbdb-9d37-4723-9ec9-1db7633c4007", "User", "USER" },
+                    { "78cdf4a6-0f6d-4fc6-8d5e-4968a3a64868", "73ad0744-14ef-4e67-ab4f-45e851038d44", "Editor", "EDITOR" },
+                    { "7c8ff463-4bb0-4928-abd4-7a59e290f1cf", "b4c663d7-57e6-44c7-ab4e-552a9d329cdd", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -260,16 +260,16 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "CategoryId", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
                 values: new object[,]
                 {
-                    { 1, 2, "/images/1.jpg", 17000m, "Computer", false, "" },
-                    { 2, 2, "/images/2.jpg", 1000m, "Keyboard", false, "" },
-                    { 3, 2, "/images/3.jpg", 500m, "Mouse", false, "" },
-                    { 4, 2, "/images/4.jpg", 3700m, "Monitor", false, "" },
-                    { 5, 2, "/images/5.jpg", 2000m, "Head Set", false, "" },
-                    { 6, 1, "/images/6.jpg", 75m, "History", false, "" },
-                    { 7, 1, "/images/7.jpg", 100m, "Hamlet", false, "" },
-                    { 8, 1, "/images/6.jpg", 170m, "Sefiller", true, "" },
-                    { 9, 2, "/images/1.jpg", 20000m, "PC X10", true, "" },
-                    { 10, 2, "/images/2.jpg", 300m, "Mechanic Keyboard", true, "" }
+                    { 1, 2, "/images/1.jpg", 17000m, "Computer", false, null },
+                    { 2, 2, "/images/2.jpg", 1000m, "Keyboard", false, null },
+                    { 3, 2, "/images/3.jpg", 500m, "Mouse", false, null },
+                    { 4, 2, "/images/4.jpg", 3700m, "Monitor", false, null },
+                    { 5, 2, "/images/5.jpg", 2000m, "Head Set", false, null },
+                    { 6, 1, "/images/6.jpg", 75m, "History", false, null },
+                    { 7, 1, "/images/7.jpg", 100m, "Hamlet", false, null },
+                    { 8, 1, "/images/6.jpg", 170m, "Sefiller", true, null },
+                    { 9, 2, "/images/1.jpg", 20000m, "PC X10", true, null },
+                    { 10, 2, "/images/2.jpg", 300m, "Mechanic Keyboard", true, null }
                 });
 
             migrationBuilder.CreateIndex(

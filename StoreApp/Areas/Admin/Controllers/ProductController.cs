@@ -50,6 +50,11 @@ namespace StoreApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] ProductDtoForInsertion productDto, IFormFile file)
         {
+            if (file == null || file.Length == 0)
+            {
+                ModelState.AddModelError("file", "Please select an image.");
+            }
+
             if (ModelState.IsValid)
             {
                 // file operation
@@ -66,6 +71,7 @@ namespace StoreApp.Areas.Admin.Controllers
                 TempData["success"] = $"{productDto.ProductName} has been created.";
                 return RedirectToAction("Index");
             }
+            ViewBag.Categories = GetCategoreiesSelectList();
             return View();
         }
 
@@ -83,23 +89,32 @@ namespace StoreApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update([FromForm] ProductDtoForUpdate productDto, IFormFile file)
         {
+            var currentImageUrl = _manager.ProductService.GetOneProduct(productDto.Id, false).ImageUrl;
             if (ModelState.IsValid)
             {
                 // file operation
-                string path = Path.Combine(Directory.GetCurrentDirectory(),
+                if (file is null)
+                {
+                    productDto.ImageUrl = currentImageUrl;
+                }
+                else
+                {
+                    string path = Path.Combine(Directory.GetCurrentDirectory(),
                    "wwwroot", "images", file.FileName);
 
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                    productDto.ImageUrl = String.Concat("/images/", file.FileName);
                 }
-                productDto.ImageUrl = String.Concat("/images/", file.FileName);
-
                 _manager.ProductService.UpdateOneProduct(productDto);
                 return RedirectToAction("Index");
             }
+
             ViewBag.Categories = GetCategoreiesSelectList();
-            return View();
+            productDto.ImageUrl = currentImageUrl;
+            return View(productDto);
         }
 
         // Get Delete

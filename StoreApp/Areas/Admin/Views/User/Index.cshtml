@@ -32,9 +32,15 @@
                         <form method="post" asp-action="Delete">
                             <input type="hidden" name="UserName" value="@user.UserName" />
                             <div class="btn-group">
-                                <a class="btn btn-sm btn-warning" asp-action="Update" asp-route-id="@user.Id">Edit</a>
-                                <a class="btn btn-sm btn-info" asp-action="ResetPassword" asp-route-id="@user.UserName">Reset Password</a>
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirmDelete();">
+                                <a class="btn btn-warning" asp-action="Update" asp-route-id="@user.Id">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-info" asp-action="ResetPassword" asp-route-id="@user.UserName">
+                                    <i class="fa-solid fa-eraser"></i>
+                                    Reset Password
+                                </a>
+                                <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">
                                     <i class="fa-solid fa-trash"></i>
                                     Delete
                                 </button>

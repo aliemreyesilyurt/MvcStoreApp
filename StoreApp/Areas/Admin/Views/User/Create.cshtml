@@ -5,28 +5,34 @@
 </div>
 
 <form method="post" asp-action="Create">
-    
     <div class="row">
-        <div class="text-danger" asp-validation-summary="All"></div>
         <div class="col-md-6">
             <div class="form-group my-3">
                 <label asp-for="UserName"></label>
-                <input asp-for="UserName" class="form-control" />
+                <input asp-for="UserName" class="form-control
+            @(ViewData.ModelState["UserName"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
             <div class="form-group my-3">
                 <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control
+            @(ViewData.ModelState["Email"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group my-3">
                 <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control
+            @(ViewData.ModelState["Password"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group my-3">
                 <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
+                <input asp-for="PhoneNumber" class="form-control
+            @(ViewData.ModelState["PhoneNumber"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
             <div class="form-group my-3">
@@ -44,15 +50,16 @@
         </div>
         <div class="col-md-6">
             <div class="lead p-2 mt-2">
-                Roles
+                <label asp-for="Roles"></label>
                 @foreach (var item in ViewBag.Roles)
                 {
                     <div class="form-check my-2">
-                        <input class="form-check-input" type="checkbox" name="Roles" value="@item" />
+                        <input type="checkbox" name="Roles" value="@item" class="form-check-input" />
                         <label class="form-check-label">@item</label>
                     </div>
                 }
             </div>
+            <span asp-validation-for="Roles" class="text-danger"></span>
 
             <div class="text-muted">
                 Please choose the roles for the user.
