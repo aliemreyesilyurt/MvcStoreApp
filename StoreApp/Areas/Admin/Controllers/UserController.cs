@@ -101,7 +101,7 @@ namespace StoreApp.Areas.Admin.Controllers
                 var result = await _manager.AuthService.ResetPassword(model);
 
                 if (result.Succeeded)
-                    RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 else
                 {
                     foreach (var err in result.Errors)

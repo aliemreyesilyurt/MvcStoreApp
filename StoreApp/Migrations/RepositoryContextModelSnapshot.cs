@@ -101,7 +101,7 @@ namespace StoreApp.Migrations
                     b.Property<string>("Line3")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -141,7 +141,6 @@ namespace StoreApp.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Summary")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -158,8 +157,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/1.jpg",
                             Price = 17000m,
                             ProductName = "Computer",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -168,8 +166,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/2.jpg",
                             Price = 1000m,
                             ProductName = "Keyboard",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -178,8 +175,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/3.jpg",
                             Price = 500m,
                             ProductName = "Mouse",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -188,8 +184,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/4.jpg",
                             Price = 3700m,
                             ProductName = "Monitor",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -198,8 +193,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/5.jpg",
                             Price = 2000m,
                             ProductName = "Head Set",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -208,8 +202,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/6.jpg",
                             Price = 75m,
                             ProductName = "History",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -218,8 +211,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/7.jpg",
                             Price = 100m,
                             ProductName = "Hamlet",
-                            ShowCase = false,
-                            Summary = ""
+                            ShowCase = false
                         },
                         new
                         {
@@ -228,8 +220,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/6.jpg",
                             Price = 170m,
                             ProductName = "Sefiller",
-                            ShowCase = true,
-                            Summary = ""
+                            ShowCase = true
                         },
                         new
                         {
@@ -238,8 +229,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/1.jpg",
                             Price = 20000m,
                             ProductName = "PC X10",
-                            ShowCase = true,
-                            Summary = ""
+                            ShowCase = true
                         },
                         new
                         {
@@ -248,8 +238,7 @@ namespace StoreApp.Migrations
                             ImageUrl = "/images/2.jpg",
                             Price = 300m,
                             ProductName = "Mechanic Keyboard",
-                            ShowCase = true,
-                            Summary = ""
+                            ShowCase = true
                         });
                 });
 
@@ -262,7 +251,7 @@ namespace StoreApp.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -282,22 +271,22 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a817f9b3-9369-4d48-9f04-2280139a7513",
-                            ConcurrencyStamp = "3140014b-5366-43c4-b9fe-fcd263f47e20",
+                            Id = "70120be2-223e-4965-9207-d5d213674b43",
+                            ConcurrencyStamp = "e1adcbdb-9d37-4723-9ec9-1db7633c4007",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "dfa9012f-1b4b-49d1-ada2-e7beeab81ba0",
-                            ConcurrencyStamp = "e4c2f956-6bb5-4b4c-948d-692c2063b586",
+                            Id = "78cdf4a6-0f6d-4fc6-8d5e-4968a3a64868",
+                            ConcurrencyStamp = "73ad0744-14ef-4e67-ab4f-45e851038d44",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "02918df8-378a-4620-b7b5-f40a1d5fe36e",
-                            ConcurrencyStamp = "64bad4ee-257c-4f66-8e52-42f6794cbe7d",
+                            Id = "7c8ff463-4bb0-4928-abd4-7a59e290f1cf",
+                            ConcurrencyStamp = "b4c663d7-57e6-44c7-ab4e-552a9d329cdd",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -463,13 +452,13 @@ namespace StoreApp.Migrations
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId", "LoginProvider", "UserName");
 
                     b.ToTable("AspNetUserTokens", (string)null);
                 });

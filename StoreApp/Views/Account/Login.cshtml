@@ -1,27 +1,31 @@
 ﻿@model LoginModel
 
-<div class="text-center my-5">
+<div class="text-center mt-3">
     <h6 class="display-6">Login</h6>
 
 </div>
 
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <div>
-            <div class="text-danger" asp-validation-summary="All"></div>
-        </div>
+<div class="row d-flex justify-content-center align-items-center mb-3">
+    <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://img.freepik.com/premium-vector/secure-login-form-page-with-password-computer-padlock-3d-vector-icon-cartoon-minimal-style_365941-1119.jpg?semt=ais_hybrid"
+             class="img-fluid" alt="Sample image">
+    </div>
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form asp-action="Login" method="post">
             <input type="hidden" asp-for="ReturnUrl" />
 
             <div class="form-group my-3">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control
+                @(ViewData.ModelState["UserName"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
             <div class="form-group my-3">
                 <label asp-for="Password"></label>
-                <input type="password" asp-for="Password" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control
+                @(ViewData.ModelState["Password"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group my-3 d-flex justify-content-center">
@@ -37,6 +41,5 @@
         </div>
 
     </div>
-    <div class="col-md-3"></div>
 </div>
 
