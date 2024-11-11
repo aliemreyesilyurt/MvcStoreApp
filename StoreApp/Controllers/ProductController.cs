@@ -31,7 +31,7 @@ namespace StoreApp.Controllers
                 Pagination = pagination
             });
         }
-        public IActionResult Get([FromRoute(Name = "id")] int id)
+        public IActionResult Get([FromRoute(Name = "id")] Guid id)
         {
             var model = _serviceManager.ProductService.GetOneProduct(id, false);
             return View(model);

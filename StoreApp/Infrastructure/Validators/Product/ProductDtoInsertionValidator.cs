@@ -20,8 +20,7 @@ public class ProductDtoInsertionValidator : AbstractValidator<ProductDtoForInser
             .MaximumLength(500).WithMessage("Summary must be less than 500 characters.");
 
         RuleFor(p => p.CategoryId)
-            .GreaterThan(0).WithMessage("Category ID must be a positive integer.")
-            .When(p => p.CategoryId.HasValue);
+            .NotEmpty().WithMessage("Category must be selected.");
 
     }
 }

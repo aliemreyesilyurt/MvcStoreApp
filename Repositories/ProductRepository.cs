@@ -11,7 +11,7 @@ namespace Repositories
         {
         }
 
-        public void CreateProduct(Product product) => Create(product);
+        public async Task CreateProduct(Product product) => await Create(product);
 
         public void DeleteProduct(Product product) => Delete(product);
 
@@ -23,13 +23,13 @@ namespace Repositories
         {
             return _context
                 .Products
-                .FilteredByCategoryId(p.CategoryId)
+                .FilteredByCategoryId(p.Id)
                 .FilteredBySearchTerm(p.SearchTerm)
                 .FilteredByPrice(p.MinPrice, p.MaxPrice, p.IsValidPrice)
                 .ToPaginate(p.PageNumber, p.PageSize);
         }
 
-        public Product? GetOneProduct(int id, bool trackChaanges)
+        public Product? GetOneProduct(Guid id, bool trackChaanges)
         {
             return FindByCondition(p => p.Id.Equals(id), trackChaanges);
         }

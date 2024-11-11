@@ -2,7 +2,7 @@
 {
     public class ProductRequestParameters : RequestParameters
     {
-        public int? CategoryId { get; set; }
+        public Guid? Id { get; set; }
         public decimal MinPrice { get; set; } = 0;
         public decimal MaxPrice { get; set; } = 500_000;
         public bool IsValidPrice => MaxPrice > MinPrice;

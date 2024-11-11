@@ -32,7 +32,7 @@ namespace StoreApp.Controllers
                 order.Lines = _cart.Lines.ToArray();
                 _manager.OrderService.SaveOrder(order);
                 _cart.Clear();
-                return RedirectToPage("/Complete", new { OrderId = order.OrderId });
+                return RedirectToPage("/Complete", new { OrderId = order.Id });
             }
             else
             {

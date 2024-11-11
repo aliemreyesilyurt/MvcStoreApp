@@ -12,7 +12,7 @@ using Repositories;
 namespace StoreApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20241108112118_init")]
+    [Migration("20241111132826_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,22 +26,26 @@ namespace StoreApp.Migrations
 
             modelBuilder.Entity("Entities.Models.CartLine", b =>
                 {
-                    b.Property<int>("CartLineId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartLineId"), 1L, 1);
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("CartLineId");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 
@@ -52,43 +56,52 @@ namespace StoreApp.Migrations
 
             modelBuilder.Entity("Entities.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
-                            CategoryId = 1,
-                            CategoryName = "Book"
+                            Id = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            CategoryName = "Book",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CategoryId = 2,
-                            CategoryName = "Electronic"
+                            Id = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CategoryName = "Electronic",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
             modelBuilder.Entity("Entities.Models.Order", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("GiftWrap")
                         .HasColumnType("bit");
@@ -103,7 +116,7 @@ namespace StoreApp.Migrations
                     b.Property<string>("Line3")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -113,23 +126,28 @@ namespace StoreApp.Migrations
                     b.Property<bool>("Shipped")
                         .HasColumnType("bit");
 
-                    b.HasKey("OrderId");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
@@ -145,6 +163,9 @@ namespace StoreApp.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -154,93 +175,113 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            CategoryId = 2,
+                            Id = new Guid("a0230502-e24c-49ba-bede-14e5afc83a52"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             Price = 17000m,
                             ProductName = "Computer",
-                            ShowCase = false
+                            ShowCase = false,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 2,
-                            CategoryId = 2,
+                            Id = new Guid("5d9cdae1-4a05-4d94-b4b3-cdc9e5abb407"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             Price = 1000m,
                             ProductName = "Keyboard",
-                            ShowCase = false
+                            ShowCase = false,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 3,
-                            CategoryId = 2,
+                            Id = new Guid("b8a92472-8d3d-4f2e-97d1-5bb5e65f4f3a"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/3.jpg",
                             Price = 500m,
                             ProductName = "Mouse",
-                            ShowCase = false
+                            ShowCase = true,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 4,
-                            CategoryId = 2,
+                            Id = new Guid("3e7ca528-0031-437e-b9f0-988e5ac67182"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/4.jpg",
                             Price = 3700m,
                             ProductName = "Monitor",
-                            ShowCase = false
+                            ShowCase = false,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 5,
-                            CategoryId = 2,
+                            Id = new Guid("c6793ba6-d8a5-49ed-8e8c-a20515826df0"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/5.jpg",
                             Price = 2000m,
                             ProductName = "Head Set",
-                            ShowCase = false
+                            ShowCase = false,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 6,
-                            CategoryId = 1,
+                            Id = new Guid("e03f4142-c799-46b3-8efd-f0e47d95008e"),
+                            CategoryId = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             Price = 75m,
                             ProductName = "History",
-                            ShowCase = false
+                            ShowCase = false,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 7,
-                            CategoryId = 1,
+                            Id = new Guid("d49cf023-ac0c-4eb8-b062-8df597e08537"),
+                            CategoryId = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/7.jpg",
                             Price = 100m,
                             ProductName = "Hamlet",
-                            ShowCase = false
+                            ShowCase = false,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 8,
-                            CategoryId = 1,
+                            Id = new Guid("9721433b-e5da-48d3-9af0-7ba2837d7d3f"),
+                            CategoryId = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             Price = 170m,
                             ProductName = "Sefiller",
-                            ShowCase = true
+                            ShowCase = true,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 9,
-                            CategoryId = 2,
+                            Id = new Guid("00d35c36-0ac4-4baf-a005-ac543731867e"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             Price = 20000m,
                             ProductName = "PC X10",
-                            ShowCase = true
+                            ShowCase = true,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = 10,
-                            CategoryId = 2,
+                            Id = new Guid("ad6d85cd-30e2-46f4-bf4b-e199a43904c3"),
+                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             Price = 300m,
                             ProductName = "Mechanic Keyboard",
-                            ShowCase = true
+                            ShowCase = true,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -253,7 +294,7 @@ namespace StoreApp.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -273,22 +314,22 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "70120be2-223e-4965-9207-d5d213674b43",
-                            ConcurrencyStamp = "e1adcbdb-9d37-4723-9ec9-1db7633c4007",
+                            Id = "b0fc19cd-723f-4d75-be42-cc36b3cff9fc",
+                            ConcurrencyStamp = "2b293a43-fdf4-4c86-8af2-5e62d70e27e6",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "78cdf4a6-0f6d-4fc6-8d5e-4968a3a64868",
-                            ConcurrencyStamp = "73ad0744-14ef-4e67-ab4f-45e851038d44",
+                            Id = "d334e31d-855c-4cd4-b3dd-7fe7257490eb",
+                            ConcurrencyStamp = "3b22035e-b730-4a19-b2a4-8c64d0928d0f",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "7c8ff463-4bb0-4928-abd4-7a59e290f1cf",
-                            ConcurrencyStamp = "b4c663d7-57e6-44c7-ab4e-552a9d329cdd",
+                            Id = "5858441b-6e3d-4829-bc0c-c07997d5c8f4",
+                            ConcurrencyStamp = "76b97865-6e4c-4f8d-aaaa-360f102988db",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -454,13 +495,13 @@ namespace StoreApp.Migrations
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "UserName");
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
                 });

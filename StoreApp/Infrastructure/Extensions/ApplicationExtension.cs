@@ -56,7 +56,7 @@ namespace StoreApp.Infrastructure.Extensions
                 user = new IdentityUser()
                 {
                     Email = "admin@storeapp.com.tr",
-                    PhoneNumber = "5051234567",
+                    PhoneNumber = "05051234567",
                     UserName = adminUser,
                     EmailConfirmed = true
                 };

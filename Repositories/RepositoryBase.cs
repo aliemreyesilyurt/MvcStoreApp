@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entities.Models.Common;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Repositories.Contracts;
 using System.Linq.Expressions;
 
 namespace Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T>
-        where T : class, new()
+        where T : BaseEntity
     {
         protected readonly RepositoryContext _context;
 
@@ -14,33 +16,37 @@ namespace Repositories
             _context = context;
         }
 
-        public void Create(T entity)
+        public DbSet<T> Table => _context.Set<T>();
+
+        public async Task<bool> Create(T entity)
         {
-            _context.Set<T>().Add(entity);
+            EntityEntry<T> entityEntry = await Table.AddAsync(entity);
+            return entityEntry.State == EntityState.Added;
         }
 
-        public void Update(T entity)
+        public bool Update(T entity)
         {
-            _context.Set<T>().Update(entity);
+            EntityEntry<T> entityEntry = Table.Update(entity);
+            return entityEntry.State == EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
+            Table.Remove(entity);
         }
 
         public IQueryable<T> FindAll(bool trackChanges)
         {
             return trackChanges
-                ? _context.Set<T>()
-                : _context.Set<T>().AsNoTracking();
+                ? Table
+                : Table.AsNoTracking();
         }
 
         public T? FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
         {
             return trackChanges
-                ? _context.Set<T>().Where(expression).SingleOrDefault()
-                : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
+                ? Table.Where(expression).SingleOrDefault()
+                : Table.Where(expression).AsNoTracking().SingleOrDefault();
         }
     }
 }
