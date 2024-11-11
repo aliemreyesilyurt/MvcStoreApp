@@ -1,36 +1,40 @@
-﻿@model Order
-
-<div class="text-danger" asp-validation-summary="All"></div>
+﻿@model OrderDto
 
 <form asp-action="Checkout" method="post">
     <div class="form-group my-3">
-        <label asp-for="Name"></label>
-        <input class="form-control" asp-for="Name"/>
-    </div>    
+        <label asp-for="Fullname"></label>
+        <input asp-for="Fullname" class="form-control
+        @(ViewData.ModelState["Fullname"]?.Errors.Any() == true ? "is-invalid" : "")" />
+        <span asp-validation-for="Fullname" class="text-danger"></span>
+    </div>
 
     <div class="form-group my-3">
         <label asp-for="Line1"></label>
-        <input class="form-control" asp-for="Line1" />
+        <input asp-for="Line1" class="form-control
+        @(ViewData.ModelState["Line1"]?.Errors.Any() == true ? "is-invalid" : "")" />
+        <span asp-validation-for="Line1" class="text-danger"></span>
     </div>
 
     <div class="form-group my-3">
         <label asp-for="Line2"></label>
-        <input class="form-control" asp-for="Line2" />
+        <input asp-for="Line2" class="form-control" />
     </div>
 
     <div class="form-group my-3">
         <label asp-for="Line3"></label>
-        <input class="form-control" asp-for="Line3" />
+        <input asp-for="Line3" class="form-control" />
     </div>
 
     <div class="form-group my-3">
         <label asp-for="City"></label>
-        <input class="form-control" asp-for="City" />
+        <input asp-for="City" class="form-control
+        @(ViewData.ModelState["City"]?.Errors.Any() == true ? "is-invalid" : "")" />
+        <span asp-validation-for="City" class="text-danger"></span>
     </div>
 
     <div class="form-group my-3">
         <input asp-for="GiftWrap" />
-        <label>Gift wrap these items.</label>   
+        <label>Gift wrap these items.</label>
     </div>
 
     <div class="text-center">
