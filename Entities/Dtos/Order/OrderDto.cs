@@ -1,11 +1,11 @@
-﻿using Entities.Models.Common;
+﻿using Entities.Models;
 
-namespace Entities.Models
+namespace Entities.Dtos.Order
 {
-    public class Order : BaseEntity
+    public record OrderDto
     {
+        public Guid Id { get; set; }
         public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
-
         public string? Fullname { get; set; }
         public string? Line1 { get; set; }
         public string? Line2 { get; set; }

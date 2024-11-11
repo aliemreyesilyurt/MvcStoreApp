@@ -67,8 +67,8 @@ namespace StoreApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Line1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Line1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Line2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Line3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -245,9 +245,9 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5858441b-6e3d-4829-bc0c-c07997d5c8f4", "76b97865-6e4c-4f8d-aaaa-360f102988db", "Admin", "ADMIN" },
-                    { "b0fc19cd-723f-4d75-be42-cc36b3cff9fc", "2b293a43-fdf4-4c86-8af2-5e62d70e27e6", "User", "USER" },
-                    { "d334e31d-855c-4cd4-b3dd-7fe7257490eb", "3b22035e-b730-4a19-b2a4-8c64d0928d0f", "Editor", "EDITOR" }
+                    { "940c6118-2c6c-4da6-ae5a-263114471385", "aa0aa817-d7be-472f-8fb4-c5c72fb7c9ff", "Editor", "EDITOR" },
+                    { "987b8e27-db56-4ce2-bcbf-b2f3f8e3e3e6", "fc6d0e0d-67db-4fbb-b602-5f40740bff80", "Admin", "ADMIN" },
+                    { "a721a83e-f1f3-459d-999c-bc2900db22f9", "495eb299-cabe-485d-9cb4-acc8074e1cf4", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -255,8 +255,8 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "CategoryName", "CreatedDate", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), "Book", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("a3035c74-2935-418c-ba5b-361b909783ed"), "Book", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -264,16 +264,16 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { new Guid("00d35c36-0ac4-4baf-a005-ac543731867e"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 20000m, "PC X10", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("3e7ca528-0031-437e-b9f0-988e5ac67182"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/4.jpg", 3700m, "Monitor", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("5d9cdae1-4a05-4d94-b4b3-cdc9e5abb407"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 1000m, "Keyboard", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("9721433b-e5da-48d3-9af0-7ba2837d7d3f"), new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 170m, "Sefiller", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("a0230502-e24c-49ba-bede-14e5afc83a52"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 17000m, "Computer", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("ad6d85cd-30e2-46f4-bf4b-e199a43904c3"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 300m, "Mechanic Keyboard", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("b8a92472-8d3d-4f2e-97d1-5bb5e65f4f3a"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/3.jpg", 500m, "Mouse", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("c6793ba6-d8a5-49ed-8e8c-a20515826df0"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/5.jpg", 2000m, "Head Set", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("d49cf023-ac0c-4eb8-b062-8df597e08537"), new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/7.jpg", 100m, "Hamlet", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("e03f4142-c799-46b3-8efd-f0e47d95008e"), new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 75m, "History", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("395d0489-0e0b-4127-bb67-efcbc311c1d2"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 1000m, "Keyboard", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("3ba714d5-5275-4cba-85d6-1108a8ac4d9d"), new Guid("a3035c74-2935-418c-ba5b-361b909783ed"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/7.jpg", 100m, "Hamlet", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("589f2949-b9cd-4065-b494-36b8336d2cb1"), new Guid("a3035c74-2935-418c-ba5b-361b909783ed"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 75m, "History", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("634172f8-1466-4962-951c-861c2e5608c4"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 20000m, "PC X10", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("6850aebb-7770-4eae-a1cf-f89aefd02e42"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 300m, "Mechanic Keyboard", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("7c692458-3ea3-4e78-91e1-a851fd30c8c9"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/4.jpg", 3700m, "Monitor", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("a09e0e22-f8dc-4c8c-95c0-239cfa963f7e"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/3.jpg", 500m, "Mouse", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("c5c0ad70-2f2f-4fbf-925c-d5cd56903d20"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/5.jpg", 2000m, "Head Set", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("dadd74b1-7fdf-4ae6-8f5d-af01ec1d3eeb"), new Guid("a3035c74-2935-418c-ba5b-361b909783ed"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 170m, "Sefiller", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("ee1bd2f4-848f-4e69-b0e7-9fcbe845a87c"), new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 17000m, "Computer", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

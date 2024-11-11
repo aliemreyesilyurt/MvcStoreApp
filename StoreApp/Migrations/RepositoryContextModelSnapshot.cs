@@ -75,14 +75,14 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            Id = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
                             CategoryName = "Book",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CategoryName = "Electronic",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -101,21 +101,19 @@ namespace StoreApp.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Fullname")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("GiftWrap")
                         .HasColumnType("bit");
 
                     b.Property<string>("Line1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Line2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Line3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderedAt")
@@ -173,8 +171,8 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a0230502-e24c-49ba-bede-14e5afc83a52"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("ee1bd2f4-848f-4e69-b0e7-9fcbe845a87c"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             Price = 17000m,
@@ -184,8 +182,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5d9cdae1-4a05-4d94-b4b3-cdc9e5abb407"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("395d0489-0e0b-4127-bb67-efcbc311c1d2"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             Price = 1000m,
@@ -195,8 +193,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b8a92472-8d3d-4f2e-97d1-5bb5e65f4f3a"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("a09e0e22-f8dc-4c8c-95c0-239cfa963f7e"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/3.jpg",
                             Price = 500m,
@@ -206,8 +204,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3e7ca528-0031-437e-b9f0-988e5ac67182"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("7c692458-3ea3-4e78-91e1-a851fd30c8c9"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/4.jpg",
                             Price = 3700m,
@@ -217,8 +215,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c6793ba6-d8a5-49ed-8e8c-a20515826df0"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("c5c0ad70-2f2f-4fbf-925c-d5cd56903d20"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/5.jpg",
                             Price = 2000m,
@@ -228,8 +226,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e03f4142-c799-46b3-8efd-f0e47d95008e"),
-                            CategoryId = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            Id = new Guid("589f2949-b9cd-4065-b494-36b8336d2cb1"),
+                            CategoryId = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             Price = 75m,
@@ -239,8 +237,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d49cf023-ac0c-4eb8-b062-8df597e08537"),
-                            CategoryId = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            Id = new Guid("3ba714d5-5275-4cba-85d6-1108a8ac4d9d"),
+                            CategoryId = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/7.jpg",
                             Price = 100m,
@@ -250,8 +248,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9721433b-e5da-48d3-9af0-7ba2837d7d3f"),
-                            CategoryId = new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"),
+                            Id = new Guid("dadd74b1-7fdf-4ae6-8f5d-af01ec1d3eeb"),
+                            CategoryId = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             Price = 170m,
@@ -261,8 +259,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("00d35c36-0ac4-4baf-a005-ac543731867e"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("634172f8-1466-4962-951c-861c2e5608c4"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             Price = 20000m,
@@ -272,8 +270,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ad6d85cd-30e2-46f4-bf4b-e199a43904c3"),
-                            CategoryId = new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"),
+                            Id = new Guid("6850aebb-7770-4eae-a1cf-f89aefd02e42"),
+                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             Price = 300m,
@@ -312,22 +310,22 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b0fc19cd-723f-4d75-be42-cc36b3cff9fc",
-                            ConcurrencyStamp = "2b293a43-fdf4-4c86-8af2-5e62d70e27e6",
+                            Id = "a721a83e-f1f3-459d-999c-bc2900db22f9",
+                            ConcurrencyStamp = "495eb299-cabe-485d-9cb4-acc8074e1cf4",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "d334e31d-855c-4cd4-b3dd-7fe7257490eb",
-                            ConcurrencyStamp = "3b22035e-b730-4a19-b2a4-8c64d0928d0f",
+                            Id = "940c6118-2c6c-4da6-ae5a-263114471385",
+                            ConcurrencyStamp = "aa0aa817-d7be-472f-8fb4-c5c72fb7c9ff",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "5858441b-6e3d-4829-bc0c-c07997d5c8f4",
-                            ConcurrencyStamp = "76b97865-6e4c-4f8d-aaaa-360f102988db",
+                            Id = "987b8e27-db56-4ce2-bcbf-b2f3f8e3e3e6",
+                            ConcurrencyStamp = "fc6d0e0d-67db-4fbb-b602-5f40740bff80",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

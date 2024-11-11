@@ -1,13 +1,14 @@
-﻿using Entities.Models;
+﻿using Entities.Dtos.Order;
+using Entities.Models;
 
 namespace Services.Contracts
 {
     public interface IOrderService
     {
-        IQueryable<Order> Orders { get; }
-        Order? GetOneOrder(Guid id);
+        IEnumerable<Order> Orders { get; }
+        OrderDto? GetOneOrder(Guid id);
         void Complete(Guid id);
-        void SaveOrder(Order order);
+        void SaveOrder(OrderDto order);
         int NumberOfInProcess { get; }
     }
 }

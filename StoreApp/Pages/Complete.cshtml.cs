@@ -4,8 +4,8 @@ namespace StoreApp.Pages
 {
     public class CompleteModel : PageModel
     {
-        public int OrderId { get; set; }
-        public void OnGet(int orderId)
+        public Guid OrderId { get; set; }
+        public void OnGet(Guid orderId)
         {
             OrderId = orderId;
         }

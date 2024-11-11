@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entities.Dtos.Order;
 using Entities.Dtos.Product;
 using Entities.Dtos.User;
 using Entities.Models;
@@ -15,6 +16,8 @@ namespace StoreApp.Infrastructure.Mapper
 
             CreateMap<UserDtoForCreation, IdentityUser>();
             CreateMap<UserDtoForUpdate, IdentityUser>().ReverseMap();
+
+            CreateMap<OrderDto, Order>().ReverseMap();
         }
     }
 }

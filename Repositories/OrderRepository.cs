@@ -34,7 +34,7 @@ namespace Repositories
         public void SaveOrder(Order order)
         {
             _context.AttachRange(order.Lines.Select(l => l.Product));
-            if (order.Id.Equals(""))
+            if (order.Id == Guid.Empty)
                 _context.Orders.Add(order);
             _context.SaveChanges();
         }
