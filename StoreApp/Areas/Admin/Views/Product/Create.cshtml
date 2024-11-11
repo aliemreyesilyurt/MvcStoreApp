@@ -27,8 +27,8 @@
                     <span class="input-group-text">₺</span>
                     <input asp-for="Price" class="form-control
             @(ViewData.ModelState["Price"]?.Errors.Any() == true ? "is-invalid" : "")" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
             </div>
         </div>
         <div class="col">

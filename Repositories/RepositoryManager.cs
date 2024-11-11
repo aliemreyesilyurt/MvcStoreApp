@@ -25,9 +25,6 @@ namespace Repositories
         public ICategoryRepository Category => _categoryRepository;
         public IOrderRepository Order => _orderRepository;
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
+        public void Save() => _context.SaveChanges();
     }
 }

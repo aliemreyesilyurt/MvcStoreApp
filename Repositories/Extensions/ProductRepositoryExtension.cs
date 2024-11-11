@@ -4,7 +4,7 @@ namespace Repositories.Extensions
 {
     public static class ProductRepositoryExtension
     {
-        public static IQueryable<Product> FilteredByCategoryId(this IQueryable<Product> products, int? categoryId)
+        public static IQueryable<Product> FilteredByCategoryId(this IQueryable<Product> products, Guid? categoryId)
         {
             if (categoryId is null)
                 return products;

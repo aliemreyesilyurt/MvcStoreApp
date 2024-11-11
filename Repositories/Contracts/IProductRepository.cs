@@ -8,8 +8,8 @@ namespace Repositories.Contracts
         IQueryable<Product> GetAllProducts(bool trackChanges);
         IQueryable<Product> GetAllProductsWithDetails(ProductRequestParameters p);
         IQueryable<Product> GetShowcasesProducts(bool trackChanges);
-        Product? GetOneProduct(int id, bool trackChaanges);
-        void CreateProduct(Product product);
+        Product? GetOneProduct(Guid id, bool trackChaanges);
+        Task CreateProduct(Product product);
         void DeleteProduct(Product product);
         void UpdateOneProduct(Product entity);
     }

@@ -76,7 +76,7 @@ namespace StoreApp.Areas.Admin.Controllers
         }
 
         // Get Update
-        public IActionResult Update([FromRoute(Name = "id")] int id)
+        public IActionResult Update([FromRoute(Name = "id")] Guid id)
         {
             ViewBag.Categories = GetCategoreiesSelectList();
 
@@ -118,7 +118,7 @@ namespace StoreApp.Areas.Admin.Controllers
         }
 
         // Get Delete
-        public IActionResult Delete([FromRoute(Name = "id")] int id)
+        public IActionResult Delete([FromRoute(Name = "id")] Guid id)
         {
             var model = _manager.ProductService.GetOneProduct(id, false);
             return View(model);
@@ -127,7 +127,7 @@ namespace StoreApp.Areas.Admin.Controllers
         // Post Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteProduct(int id)
+        public IActionResult DeleteProduct(Guid id)
         {
             _manager.ProductService.DeleteOneProduct(id);
             return RedirectToAction("Index");
@@ -137,7 +137,7 @@ namespace StoreApp.Areas.Admin.Controllers
         private SelectList GetCategoreiesSelectList()
         {
             return new SelectList(_manager.CategoryService.GetAllCategories(false),
-                "CategoryId",
+                "Id",
                 "CategoryName",
                 "1");
         }

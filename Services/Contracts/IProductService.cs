@@ -10,10 +10,10 @@ namespace Services.Contracts
         IEnumerable<Product> GetLastestProducts(int n, bool trackChanges);
         IEnumerable<Product> GetAllProductsWithDetails(ProductRequestParameters p);
         IEnumerable<Product> GetShowcasesProducts(bool trackChanges);
-        Product? GetOneProduct(int id, bool trackChanges);
+        Product? GetOneProduct(Guid id, bool trackChanges);
         void CreateProduct(ProductDtoForInsertion product);
         void UpdateOneProduct(ProductDtoForUpdate productDto);
-        void DeleteOneProduct(int id);
-        ProductDtoForUpdate GetOneProductForUpdate(int id, bool trackChanges);
+        void DeleteOneProduct(Guid id);
+        ProductDtoForUpdate GetOneProductForUpdate(Guid id, bool trackChanges);
     }
 }

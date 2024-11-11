@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Models.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Models
 {
-    public class Order
+    public class Order : BaseEntity
     {
-        public int OrderId { get; set; }
         public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
 
 

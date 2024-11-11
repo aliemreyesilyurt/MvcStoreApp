@@ -21,7 +21,7 @@ namespace StoreApp.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Complete([FromForm] int id)
+        public IActionResult Complete([FromForm] Guid id)
         {
             _manager.OrderService.Complete(id);
             return RedirectToAction("Index");

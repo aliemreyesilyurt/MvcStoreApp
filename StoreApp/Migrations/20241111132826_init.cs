@@ -52,21 +52,21 @@ namespace StoreApp.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Line1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Line2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -74,11 +74,13 @@ namespace StoreApp.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GiftWrap = table.Column<bool>(type: "bit", nullable: false),
                     Shipped = table.Column<bool>(type: "bit", nullable: false),
-                    OrderedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    OrderedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,14 +193,15 @@ namespace StoreApp.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Summary = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
-                    ShowCase = table.Column<bool>(type: "bit", nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ShowCase = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -207,27 +210,28 @@ namespace StoreApp.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "CategoryId");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "CartLine",
                 columns: table => new
                 {
-                    CartLineId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: true)
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartLine", x => x.CartLineId);
+                    table.PrimaryKey("PK_CartLine", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CartLine_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "OrderId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CartLine_Products_ProductId",
                         column: x => x.ProductId,
@@ -241,35 +245,35 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "70120be2-223e-4965-9207-d5d213674b43", "e1adcbdb-9d37-4723-9ec9-1db7633c4007", "User", "USER" },
-                    { "78cdf4a6-0f6d-4fc6-8d5e-4968a3a64868", "73ad0744-14ef-4e67-ab4f-45e851038d44", "Editor", "EDITOR" },
-                    { "7c8ff463-4bb0-4928-abd4-7a59e290f1cf", "b4c663d7-57e6-44c7-ab4e-552a9d329cdd", "Admin", "ADMIN" }
+                    { "5858441b-6e3d-4829-bc0c-c07997d5c8f4", "76b97865-6e4c-4f8d-aaaa-360f102988db", "Admin", "ADMIN" },
+                    { "b0fc19cd-723f-4d75-be42-cc36b3cff9fc", "2b293a43-fdf4-4c86-8af2-5e62d70e27e6", "User", "USER" },
+                    { "d334e31d-855c-4cd4-b3dd-7fe7257490eb", "3b22035e-b730-4a19-b2a4-8c64d0928d0f", "Editor", "EDITOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "CategoryName" },
+                columns: new[] { "Id", "CategoryName", "CreatedDate", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, "Book" },
-                    { 2, "Electronic" }
+                    { new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), "Book", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "CategoryId", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary" },
+                columns: new[] { "Id", "CategoryId", "CreatedDate", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 2, "/images/1.jpg", 17000m, "Computer", false, null },
-                    { 2, 2, "/images/2.jpg", 1000m, "Keyboard", false, null },
-                    { 3, 2, "/images/3.jpg", 500m, "Mouse", false, null },
-                    { 4, 2, "/images/4.jpg", 3700m, "Monitor", false, null },
-                    { 5, 2, "/images/5.jpg", 2000m, "Head Set", false, null },
-                    { 6, 1, "/images/6.jpg", 75m, "History", false, null },
-                    { 7, 1, "/images/7.jpg", 100m, "Hamlet", false, null },
-                    { 8, 1, "/images/6.jpg", 170m, "Sefiller", true, null },
-                    { 9, 2, "/images/1.jpg", 20000m, "PC X10", true, null },
-                    { 10, 2, "/images/2.jpg", 300m, "Mechanic Keyboard", true, null }
+                    { new Guid("00d35c36-0ac4-4baf-a005-ac543731867e"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 20000m, "PC X10", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("3e7ca528-0031-437e-b9f0-988e5ac67182"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/4.jpg", 3700m, "Monitor", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("5d9cdae1-4a05-4d94-b4b3-cdc9e5abb407"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 1000m, "Keyboard", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("9721433b-e5da-48d3-9af0-7ba2837d7d3f"), new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 170m, "Sefiller", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("a0230502-e24c-49ba-bede-14e5afc83a52"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 17000m, "Computer", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("ad6d85cd-30e2-46f4-bf4b-e199a43904c3"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 300m, "Mechanic Keyboard", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b8a92472-8d3d-4f2e-97d1-5bb5e65f4f3a"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/3.jpg", 500m, "Mouse", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("c6793ba6-d8a5-49ed-8e8c-a20515826df0"), new Guid("e22129c3-11eb-478e-bcce-b0824b4597fb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/5.jpg", 2000m, "Head Set", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("d49cf023-ac0c-4eb8-b062-8df597e08537"), new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/7.jpg", 100m, "Hamlet", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("e03f4142-c799-46b3-8efd-f0e47d95008e"), new Guid("1dbc8261-caff-4b13-a46a-230aec125e19"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 75m, "History", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

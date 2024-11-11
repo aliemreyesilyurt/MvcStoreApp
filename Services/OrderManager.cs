@@ -17,13 +17,13 @@ namespace Services
 
         public int NumberOfInProcess => _repositoryManager.Order.NumberOfInProcess;
 
-        public void Complete(int id)
+        public void Complete(Guid id)
         {
             _repositoryManager.Order.Complete(id);
             _repositoryManager.Save();
         }
 
-        public Order? GetOneOrder(int id)
+        public Order? GetOneOrder(Guid id)
         {
             return _repositoryManager.Order.GetOneOrder(id);
         }

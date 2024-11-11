@@ -38,7 +38,7 @@ namespace Services
         }
 
         // Get Update
-        public ProductDtoForUpdate GetOneProductForUpdate(int id, bool trackChanges)
+        public ProductDtoForUpdate GetOneProductForUpdate(Guid id, bool trackChanges)
         {
             var product = GetOneProduct(id, trackChanges);
             var productDto = _mapper.Map<ProductDtoForUpdate>(product);
@@ -46,9 +46,9 @@ namespace Services
         }
 
         // Delete
-        public void DeleteOneProduct(int id)
+        public void DeleteOneProduct(Guid id)
         {
-            var product = GetOneProduct(id, false);
+            var product = GetOneProduct(id, true);
 
             if (product is not null)
             {
@@ -70,7 +70,7 @@ namespace Services
         }
 
         // Get One
-        public Product? GetOneProduct(int id, bool trackChanges)
+        public Product? GetOneProduct(Guid id, bool trackChanges)
         {
             var product = _repositoryManager.Product.GetOneProduct(id, trackChanges);
 

@@ -20,7 +20,7 @@ namespace StoreApp.Pages
             ReturnUrl = returnUrl ?? "/";
         }
 
-        public IActionResult OnPost(int id, string returnUrl)
+        public IActionResult OnPost(Guid id, string returnUrl)
         {
             Product? product = _manager
                 .ProductService
