@@ -1,4 +1,5 @@
 ﻿using Entities.Dtos.User;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Services.Contracts
@@ -6,10 +7,10 @@ namespace Services.Contracts
     public interface IAuthService
     {
         IEnumerable<IdentityRole> Roles { get; }
-        IEnumerable<IdentityUser> GetAllUsers();
+        IEnumerable<User> GetAllUsers();
         Task<UserDtoForUpdate> GetOneUserForUpdate(string id);
-        Task<IdentityUser> GetOneUserById(string id);
-        Task<IdentityUser> GetOneUserByUsername(string userName);
+        Task<User> GetOneUserById(string id);
+        Task<User> GetOneUserByUsername(string userName);
         Task<IdentityResult> CreateUser(UserDtoForCreation userDto);
         Task UpdateOneUser(string id, UserDtoForUpdate userDto);
         Task<IdentityResult> ResetPassword(ResetPasswordDto model);

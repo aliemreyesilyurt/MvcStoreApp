@@ -6,10 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly); //API Support
+
 builder.Services.AddControllersWithViews(options =>
 {
     options.ModelMetadataDetailsProviders.Clear();
 });
+
 builder.Services
     .AddFluentValidationAutoValidation(options =>
     {
@@ -20,11 +22,11 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddRazorPages();
 
 builder.Services.ConfigureDbContext(builder.Configuration);
-builder.Services.ConfigureIdentity(); //Identity Configuration
-builder.Services.ConfigureSession(); //Session Configuration
 builder.Services.ConfigureRepositoryRegistration(); //Repositories Configuration
 builder.Services.ConfigureServiceRegistration(); //Services Configuration
 builder.Services.ConfigureRouting();
+builder.Services.ConfigureIdentity(); //Identity Configuration
+builder.Services.ConfigureSession(); //Session Configuration
 builder.Services.ConfigureApplicationCookie();
 
 builder.Services.AddAutoMapper(typeof(Program));

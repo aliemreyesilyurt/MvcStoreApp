@@ -3,57 +3,78 @@
     var total = @Model.Lines.Sum(c => c.Product.Price * c.Quantity);
 }
 
-<div class="row shadow my-3">
-    <div class="col-md-3 border-1 border-dark bg-light">
-        <h5 class="display-5 text-center">
-            <i class="fa-solid fa-bag-shopping"></i> <br />
-            @Model?.Fullname
-        </h5>
-        <p>@Model?.Line1</p>
-        <p>@Model?.Line2</p>
-        <p>@Model?.Line3</p>
-        <p>@Model?.City</p>
-        <p class="rounded-2 py-3">
-            <b>Shipped:</b>
-            @if (Model.Shipped)
-            {
-                <span class="bg-success p-2 rounded text-white">Completed</span>
-            }
-            else
-            {
-                <span class="bg-warning p-2 rounded">In Progress</span>
-            }
-            
-        </p>
-    </div>
-    <div class="col-md-9">
-        <h6 class="display-6 mt-3 text-center">
-            Cart
-        </h6>
-        <ul class="list-group">
-            @foreach (var cartItem in Model?.Lines)
-            {
-                <li class="list-group-item d-flex justify-content-between brand">
-                    @cartItem.Product.ProductName
-                    <b>
-                        @cartItem.Quantity * @cartItem.Product.Price.ToString("C2")
-                        = @((cartItem.Quantity * cartItem.Product.Price).ToString("C2"))
-                    </b>
-                </li>
-            }
-            <li class="list-group-item d-flex justify-content-between text-danger">
-                Total
-                <b>@total.ToString("C2")</b>
-            </li>
-        </ul>
-
-        <div class="text-center mt-2 p-2">
-            <form asp-action="Complete" method="post">
-                <input type="hidden" name="id" value="@Model.Id" />
-                <button type="submit" class="btn btn-success" disabled ="@Model?.Shipped">
-                    Complete
-                </button>
-            </form>
+<div class="col-md-12 my-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><strong>Order Date:</strong> @Model.CreatedDate</h5>
         </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><strong>Address Line 1:</strong> @Model.Line1</li>
+                        <li><strong>Address Line 2:</strong> @Model.Line2</li>
+                        <li><strong>Address Line 3:</strong> @Model.Line3</li>
+                        <li><strong>City:</strong> @Model.City</li>
+                        <li><strong>Gift Wrap:</strong> @(Model.GiftWrap ? "Yes" : "No")</li>
+                        <li>
+                            <strong>Status:</strong>
+                            @if (Model.Status == OrderStatus.Pending)
+                            {
+                                <span class="badge bg-secondary">Pending</span>
+                            }
+                            else if (Model.Status == OrderStatus.Shipped)
+                            {
+                                <span class="badge bg-primary">Shipped</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Deliverd</span>
+                            }
+                        </li>
+                        <li><strong>User ID:</strong> @Model.UserId</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var line in Model.Lines)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="col">@line.Product.ProductName</div>
+                                    </td>
+                                    <td>
+                                        <div class="col">@line.Quantity</div>
+                                    </td>
+                                    <td>
+                                        <div class="col text-danger">@((line.Product.Price * line.Quantity).ToString("c2"))</div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                    <div class="mt-2 p-2">
+                        <form asp-action="Complete" method="post">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button type="submit" class="btn btn-success" disabled="@(Model.Status == OrderStatus.Delivered ? true : false)">
+                                Complete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.Dtos.User;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Services.Contracts;
 
@@ -8,11 +9,11 @@ namespace Services
     public class AuthManager : IAuthService
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
 
         public AuthManager(RoleManager<IdentityRole> roleManager,
-            UserManager<IdentityUser> userManager,
+            UserManager<User> userManager,
             IMapper mapper)
         {
             _roleManager = roleManager;
@@ -26,7 +27,7 @@ namespace Services
         // Create
         public async Task<IdentityResult> CreateUser(UserDtoForCreation userDto)
         {
-            var user = _mapper.Map<IdentityUser>(userDto);
+            var user = _mapper.Map<User>(userDto);
             var result = await _userManager.CreateAsync(user, userDto.Password);
 
             if (!result.Succeeded)
@@ -49,14 +50,14 @@ namespace Services
         }
 
         // Get All
-        public IEnumerable<IdentityUser> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
             var users = _userManager.Users.ToList();
             return users;
         }
 
         // Get One By UserName
-        public async Task<IdentityUser> GetOneUserByUsername(string userName)
+        public async Task<User> GetOneUserByUsername(string userName)
         {
             var user = await _userManager.FindByNameAsync(userName);
             if (user is not null)
@@ -66,7 +67,7 @@ namespace Services
         }
 
         // Get One By Id
-        public async Task<IdentityUser> GetOneUserById(string id)
+        public async Task<User> GetOneUserById(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user is not null)

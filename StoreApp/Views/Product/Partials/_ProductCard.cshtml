@@ -1,35 +1,38 @@
 ﻿@model Product
 
-<div class="col-sm-12 col-md-6 col-xl-4 my-3">
-    <div class="card" style="width: 18rem;">
-        <div class="card-header text-center">
-            @Model.ProductName
-        </div>
-
-        <img src="@Model?.ImageUrl" class="card-img-top" alt="...">
+<div class="col-12 col-sm-6 col-md-4 py-3">
+    <div class="card">
+        <!-- Üst kısımdaki ürün resmi -->
+        <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
         <div class="card-body">
-            <div class="card-text">
-                <div class="text-danger text-center lead p-2 rounded-2">
-                    @Model?.Price.ToString("C2")
-                </div>
+            <!-- Kategori -->
+            <p class="text-muted mb-1">@await Component.InvokeAsync("GetCategoryName", new { id = Model.CategoryId })</p>
+
+            <!-- Ürün adı -->
+            <h6 class="card-title font-weight-bold">@Model.ProductName</h6>
+
+            <!-- Fiyat -->
+            <div class="d-flex align-items-center mb-3">
+                <span class="fw-bold text-secondary me-2">@Model.Price.ToString("C")</span>
             </div>
-            <p class="card-text">@Model?.Summary</p>
-            <div class="d-flex justify-content-end">
-                <form id="@Model.Id" asp-page="/cart" method="post">
-                    <input type="hidden" asp-for="Id" />
-                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
 
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-outline-primary rounded" asp-controller="Product" asp-action="Get" asp-route-id="@Model.Id">
-                            <i class="fa-solid fa-arrow-right"></i>
+            <form id="@Model.Id" asp-page="/cart" method="post">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary btn-sm w-100" asp-controller="Product" asp-action="Get" asp-route-id="@Model.Id">
+                            <i class="fa-solid fa-arrow-right"></i> Details
                         </a>
-
-                        <button type="submit" class="btn btn-primary mx-1 rounded">
-                            <i class="fa-solid fa-cart-plus"></i>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success btn-sm w-100">
+                            <i class="fa-solid fa-cart-plus"></i> Add
                         </button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

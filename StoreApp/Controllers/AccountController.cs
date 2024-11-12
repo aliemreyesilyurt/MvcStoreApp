@@ -1,4 +1,6 @@
-﻿using Entities.Dtos.User;
+﻿using AutoMapper;
+using Entities.Dtos.User;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StoreApp.Models;
@@ -7,14 +9,17 @@ namespace StoreApp.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly IMapper _mapper;
 
-        public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<User> userManager,
+            SignInManager<User> signInManager,
+            IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _mapper = mapper;
         }
 
         public IActionResult Login([FromQuery(Name = "ReturnUrl")] string ReturnUrl = "/")
@@ -31,7 +36,7 @@ namespace StoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await _userManager.FindByNameAsync(model.UserName);
+                User user = await _userManager.FindByNameAsync(model.UserName);
                 if (user is not null)
                 {
                     await _signInManager.SignOutAsync();
@@ -63,11 +68,7 @@ namespace StoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
-                {
-                    UserName = model.UserName,
-                    Email = model.Email,
-                };
+                var user = _mapper.Map<User>(model);
 
                 var result = await _userManager
                     .CreateAsync(user, model.Password);
