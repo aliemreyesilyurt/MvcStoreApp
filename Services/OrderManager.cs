@@ -19,6 +19,13 @@ namespace Services
 
         public IEnumerable<Order> Orders => _repositoryManager.Order.Orders;
 
+        public IEnumerable<Order> GetUsersOrders(string userId)
+        {
+            IEnumerable<Order> usersOrders = _repositoryManager.Order.GetUsersOrders(userId);
+
+            return usersOrders;
+        }
+
         public int NumberOfInProcess => _repositoryManager.Order.NumberOfInProcess;
 
         public void Complete(Guid id)
@@ -33,11 +40,11 @@ namespace Services
             return _mapper.Map<OrderDto>(order);
         }
 
-        public void SaveOrder(OrderDto orderDto)
+        public void SaveOrder(OrderDto orderDto, string userId)
         {
             var order = _mapper.Map<Order>(orderDto);
 
-            _repositoryManager.Order.SaveOrder(order);
+            _repositoryManager.Order.SaveOrder(order, userId);
         }
     }
 }

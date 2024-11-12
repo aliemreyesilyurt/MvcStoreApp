@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 
@@ -33,14 +34,14 @@ namespace StoreApp.Infrastructure.Extensions
         public static async void ConfigureDefaultAdminUser(this IApplicationBuilder app)
         {
             const string adminUser = "Admin";
-            const string adminPassword = "Admin+12345.";
+            const string adminPassword = "Admin12345.";
 
             // UserManager
-            UserManager<IdentityUser> userManager = app
+            UserManager<User> userManager = app
                 .ApplicationServices
                 .CreateScope()
                 .ServiceProvider
-                .GetRequiredService<UserManager<IdentityUser>>();
+                .GetRequiredService<UserManager<User>>();
 
             // RoleManager
             RoleManager<IdentityRole> roleManager = app
@@ -49,15 +50,15 @@ namespace StoreApp.Infrastructure.Extensions
                 .ServiceProvider
                 .GetRequiredService<RoleManager<IdentityRole>>();
 
-            IdentityUser user = await userManager.FindByNameAsync(adminUser);
+            User user = await userManager.FindByNameAsync(adminUser);
 
             if (user is null)
             {
-                user = new IdentityUser()
+                user = new User()
                 {
+                    UserName = adminUser,
                     Email = "admin@storeapp.com.tr",
                     PhoneNumber = "05051234567",
-                    UserName = adminUser,
                     EmailConfirmed = true
                 };
 

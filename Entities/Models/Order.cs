@@ -14,5 +14,9 @@ namespace Entities.Models
         public bool GiftWrap { get; set; }
         public bool Shipped { get; set; }
         public DateTime OrderedAt { get; set; } = DateTime.Now;
+
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public string UserId { get; set; }
+        public User User { get; set; }
     }
 }

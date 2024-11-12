@@ -33,6 +33,7 @@ namespace StoreApp.Infrastructure.TagHelpers
             h6.InnerHtml.AppendHtml(" Lastest Products");
 
             TagBuilder ul = new TagBuilder("ul");
+            ul.Attributes.Add("class", "text-start");
             var products = _manager.ProductService.GetLastestProducts(Number, false);
             foreach (Product prd in products)
             {

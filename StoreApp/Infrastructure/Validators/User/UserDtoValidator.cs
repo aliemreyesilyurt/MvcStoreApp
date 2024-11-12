@@ -23,6 +23,20 @@ namespace StoreApp.Infrastructure.Validators.User
             RuleFor(x => x.Roles)
                 .NotEmpty().WithMessage("Roles collection must contain at least one item.")
                 .Must(roles => roles?.Count > 0).WithMessage("Roles collection must contain at least one item.");
+
+            RuleFor(u => u.FirstName)
+                .NotEmpty().WithMessage("Firstname is required.")
+                .MinimumLength(2).WithMessage("Firstname must be at least 5 characters.")
+                .MaximumLength(50).WithMessage("Firstname must be less than 50 characters.");
+
+            RuleFor(u => u.LastName)
+                .NotEmpty().WithMessage("Lastname is required.")
+                .MinimumLength(2).WithMessage("Lastname must be at least 5 characters.")
+                .MaximumLength(50).WithMessage("Lastname must be less than 50 characters.");
+
+            RuleFor(u => u.Age)
+                .NotEmpty().WithMessage("Age is required.")
+                .GreaterThan(18).WithMessage("Your age must be at least 18.");
         }
     }
 }

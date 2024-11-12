@@ -75,14 +75,14 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
+                            Id = new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"),
                             CategoryName = "Book",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CategoryName = "Electronic",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -122,10 +122,19 @@ namespace StoreApp.Migrations
                     b.Property<bool>("Shipped")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -171,8 +180,8 @@ namespace StoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ee1bd2f4-848f-4e69-b0e7-9fcbe845a87c"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("b99d763f-65de-40b9-bfef-0dda475c9c65"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             Price = 17000m,
@@ -182,8 +191,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("395d0489-0e0b-4127-bb67-efcbc311c1d2"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("f9694c31-cde3-4984-a088-45ea4d8c42a5"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             Price = 1000m,
@@ -193,8 +202,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a09e0e22-f8dc-4c8c-95c0-239cfa963f7e"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("fd760806-cd50-481a-a1a2-a6250d3fbe5c"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/3.jpg",
                             Price = 500m,
@@ -204,8 +213,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7c692458-3ea3-4e78-91e1-a851fd30c8c9"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("7ac8d8c2-69f7-4bda-ad3d-8a93f2a02566"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/4.jpg",
                             Price = 3700m,
@@ -215,8 +224,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c5c0ad70-2f2f-4fbf-925c-d5cd56903d20"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("f47e4cb5-d03e-4bd6-b568-5e4333233cd9"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/5.jpg",
                             Price = 2000m,
@@ -226,8 +235,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("589f2949-b9cd-4065-b494-36b8336d2cb1"),
-                            CategoryId = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
+                            Id = new Guid("30e441bd-41c2-44bb-a412-ad84f65ef130"),
+                            CategoryId = new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             Price = 75m,
@@ -237,8 +246,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3ba714d5-5275-4cba-85d6-1108a8ac4d9d"),
-                            CategoryId = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
+                            Id = new Guid("956c3e33-7717-4ada-a746-d8a637348b71"),
+                            CategoryId = new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/7.jpg",
                             Price = 100m,
@@ -248,8 +257,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dadd74b1-7fdf-4ae6-8f5d-af01ec1d3eeb"),
-                            CategoryId = new Guid("a3035c74-2935-418c-ba5b-361b909783ed"),
+                            Id = new Guid("f3e4b6f3-1724-4fc7-8db0-2914ef80c1c2"),
+                            CategoryId = new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             Price = 170m,
@@ -259,8 +268,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("634172f8-1466-4962-951c-861c2e5608c4"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("76318167-fac4-40b5-a1fc-3f288964b8cb"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             Price = 20000m,
@@ -270,8 +279,8 @@ namespace StoreApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6850aebb-7770-4eae-a1cf-f89aefd02e42"),
-                            CategoryId = new Guid("9374e7b2-014a-4042-8f55-e84e07f24951"),
+                            Id = new Guid("148fae94-ebb9-45ad-aadd-613a489b0ddc"),
+                            CategoryId = new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             Price = 300m,
@@ -281,87 +290,15 @@ namespace StoreApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a721a83e-f1f3-459d-999c-bc2900db22f9",
-                            ConcurrencyStamp = "495eb299-cabe-485d-9cb4-acc8074e1cf4",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "940c6118-2c6c-4da6-ae5a-263114471385",
-                            ConcurrencyStamp = "aa0aa817-d7be-472f-8fb4-c5c72fb7c9ff",
-                            Name = "Editor",
-                            NormalizedName = "EDITOR"
-                        },
-                        new
-                        {
-                            Id = "987b8e27-db56-4ce2-bcbf-b2f3f8e3e3e6",
-                            ConcurrencyStamp = "fc6d0e0d-67db-4fbb-b602-5f40740bff80",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+            modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -374,6 +311,12 @@ namespace StoreApp.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -419,6 +362,81 @@ namespace StoreApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "53a43bfc-48ec-4d0f-9e47-850f89d1867a",
+                            ConcurrencyStamp = "0e53fb2c-0e24-4c67-a2d2-b279c8808694",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "6337e74c-aa4e-444c-9fc1-c0d18469f62b",
+                            ConcurrencyStamp = "4de7c4fd-0503-4069-8b5b-3433699e856b",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        },
+                        new
+                        {
+                            Id = "cfd07898-ca6d-4802-8958-bf13bd67a523",
+                            ConcurrencyStamp = "80e61e64-59d7-4522-b195-e87754d0cdf4",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -517,6 +535,17 @@ namespace StoreApp.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Entities.Models.Order", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
                     b.HasOne("Entities.Models.Category", "Category")
@@ -537,7 +566,7 @@ namespace StoreApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -546,7 +575,7 @@ namespace StoreApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -561,7 +590,7 @@ namespace StoreApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -570,7 +599,7 @@ namespace StoreApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Entities.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

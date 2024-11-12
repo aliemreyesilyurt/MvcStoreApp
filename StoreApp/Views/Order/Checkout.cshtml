@@ -1,6 +1,16 @@
 ﻿@model OrderDto
 
 <form asp-action="Checkout" method="post">
+    @if(ViewData.ModelState.ContainsKey("Error") && ViewData.ModelState["Error"]?.Errors.Count() > 0)
+    {
+        <div class="text-danger">
+            @foreach (var error in ViewData.ModelState["Error"].Errors)
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
     <div class="form-group my-3">
         <label asp-for="Fullname"></label>
         <input asp-for="Fullname" class="form-control
@@ -38,6 +48,9 @@
     </div>
 
     <div class="text-center">
-        <button type="submit" class="btn btn-primary">Complete Order</button>
+        <div class="form-group my-3">
+            <button asp-controller="Home" asp-action="Index" class="btn btn-primary">Homepage</button>
+            <button type="submit" class="btn btn-primary">Complete Order</button>
+        </div>
     </div>
 </form>

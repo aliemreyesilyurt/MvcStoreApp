@@ -6,8 +6,9 @@ namespace Repositories.Contracts
     {
         IQueryable<Order> Orders { get; }
         Order? GetOneOrder(Guid id);
+        IQueryable<Order> GetUsersOrders(string userId);
         void Complete(Guid id);
-        void SaveOrder(Order order);
+        void SaveOrder(Order order, string userId);
         int NumberOfInProcess { get; }
     }
 }

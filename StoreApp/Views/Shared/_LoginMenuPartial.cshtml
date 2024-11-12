@@ -14,15 +14,35 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <li class="nav-item">
-        <a class="nav-link"
-           asp-area=""
-           asp-controller="Account"
-           asp-action="Logout"
-           asp-route-returnUrl="@Context.Request.PathAndQuery()">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            Logout
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+            Profile
         </a>
+        <ul class="dropdown-menu">
+            @if (!User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="nav-link dropdown-item"
+                       asp-area=""
+                       asp-controller="Order"
+                       asp-action="UserOrders">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        My Orders
+                    </a>
+                </li>
+            }
+            <li>
+                <a class="nav-link dropdown-item"
+                   asp-area=""
+                   asp-controller="Account"
+                   asp-action="Logout"
+                   asp-route-returnUrl="@Context.Request.PathAndQuery()">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
     </li>
 }
 else
@@ -34,6 +54,14 @@ else
            asp-action="Login"
            asp-route-returnUrl="@Context.Request.PathAndQuery()">
             Login
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           asp-area=""
+           asp-controller="Account"
+           asp-action="Register">
+            Register
         </a>
     </li>
 }

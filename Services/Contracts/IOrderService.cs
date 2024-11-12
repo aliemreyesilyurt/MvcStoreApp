@@ -7,8 +7,9 @@ namespace Services.Contracts
     {
         IEnumerable<Order> Orders { get; }
         OrderDto? GetOneOrder(Guid id);
+        IEnumerable<Order> GetUsersOrders(string userId);
         void Complete(Guid id);
-        void SaveOrder(OrderDto order);
+        void SaveOrder(OrderDto order, string userId);
         int NumberOfInProcess { get; }
     }
 }

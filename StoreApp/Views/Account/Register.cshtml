@@ -1,17 +1,16 @@
 ﻿@model RegisterDto
 
-<div class="text-center my-5">
+<div class="text-center mt-3">
     <h6 class="display-6">Register</h6>
 
 </div>
 
-<div class="row">
+<div class="row d-flex justify-content-center align-items-center mb-3">
     <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1731331553~exp=1731335153~hmac=7bd8c82f53aaec2ecbc3b48be325f1e64944885a60916a4e50f17895eedb4325&w=740"
-             class="img-fluid" alt="Sample image">
+        <img src="~/images/register.jpg" class="img-fluid" alt="Sample image">
     </div>
     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        
+
         @if (ViewData.ModelState.ContainsKey("Error") && ViewData.ModelState["Error"]?.Errors.Count > 0)
         {
             <div class="text-danger">
@@ -21,8 +20,45 @@
                 }
             </div>
         }
-
         <form asp-action="Register" method="post">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control
+                    @(ViewData.ModelState["FirstName"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control
+                    @(ViewData.ModelState["LastName"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label asp-for="Age"></label>
+                        <input asp-for="Age" class="form-control
+                        @(ViewData.ModelState["Age"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group my-3">
+                        <label asp-for="PhoneNumber"></label>
+                        <input asp-for="PhoneNumber" placeholder="05501234567" class="form-control
+                        @(ViewData.ModelState["PhoneNumber"]?.Errors.Any() == true ? "is-invalid" : "")" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group my-3">
                 <label asp-for="UserName"></label>
                 <div class="input-group">
@@ -45,11 +81,6 @@
                 <input type="password" asp-for="Password" class="form-control
                     @(ViewData.ModelState["Password"]?.Errors.Any() == true ? "is-invalid" : "")" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <div class="form-group my-3">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" placeholder="05** *** ** **" />
             </div>
 
             <div class="form-group my-3 d-flex justify-content-center">

@@ -1,13 +1,12 @@
 ﻿using Entities.Models;
 using Entities.Models.Common;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Repositories
 {
-    public class RepositoryContext : IdentityDbContext<IdentityUser>
+    public class RepositoryContext : IdentityDbContext<User>
     {
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
         {
@@ -22,6 +21,12 @@ namespace Repositories
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User) // Bir siparişin bir kullanıcıya ait olduğunu belirtiyoruz
+                .WithMany() // Kullanıcıda çok sayıda sipariş olabilir, fakat Order tablosunda sadece bir kullanıcıya ait olacağını belirtiyoruz
+                .HasForeignKey(o => o.UserId); // Kullanıcı ile ilişkili olan UserId'yi belirtiyoruz
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 

@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<Product>
 
-<div class="text-center">
-    <h6 class="display-6">Showcase</h6>
-</div>
 
-<div class="row">
-    @foreach (var prd in Model)
-    {
-        <partial name="~/Views/Product/Partials/_ProductCard.cshtml" model="prd" />
-    }
+<div class="container-fluid">
+    <div class="text-center">
+        <h6 class="display-6">Showcase</h6>
+    </div>
 
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var prd in Model)
+        {
+            <partial name="~/Views/Product/Partials/_ProductCard.cshtml" model="prd" />
+        }
+    </div>
 </div>
