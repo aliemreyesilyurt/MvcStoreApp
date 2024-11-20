@@ -256,9 +256,9 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "53a43bfc-48ec-4d0f-9e47-850f89d1867a", "0e53fb2c-0e24-4c67-a2d2-b279c8808694", "User", "USER" },
-                    { "6337e74c-aa4e-444c-9fc1-c0d18469f62b", "4de7c4fd-0503-4069-8b5b-3433699e856b", "Editor", "EDITOR" },
-                    { "cfd07898-ca6d-4802-8958-bf13bd67a523", "80e61e64-59d7-4522-b195-e87754d0cdf4", "Admin", "ADMIN" }
+                    { "3ce8c26a-1e15-4ea5-a1d0-6b123d6953d9", "a0d029ee-08a0-4178-8954-b188c8297fab", "User", "USER" },
+                    { "54ab031f-7b04-4ce2-a475-6309a35701ae", "004b1964-e396-4392-8853-bb60b50e4fb4", "Admin", "ADMIN" },
+                    { "f887253b-2e8f-4c06-8c9f-7bcbea24a92b", "c2116d17-bffc-4b12-aab1-ec0381843066", "Editor", "EDITOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -266,8 +266,8 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "CategoryName", "CreatedDate", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"), "Book", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("cece3fbf-d5f4-4524-b0ba-8408a9f343fe"), "Book", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -275,16 +275,16 @@ namespace StoreApp.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "ImageUrl", "Price", "ProductName", "ShowCase", "Summary", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { new Guid("148fae94-ebb9-45ad-aadd-613a489b0ddc"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 300m, "Mechanic Keyboard", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("30e441bd-41c2-44bb-a412-ad84f65ef130"), new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 75m, "History", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("76318167-fac4-40b5-a1fc-3f288964b8cb"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 20000m, "PC X10", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("7ac8d8c2-69f7-4bda-ad3d-8a93f2a02566"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/4.jpg", 3700m, "Monitor", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("956c3e33-7717-4ada-a746-d8a637348b71"), new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/7.jpg", 100m, "Hamlet", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("b99d763f-65de-40b9-bfef-0dda475c9c65"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 17000m, "Computer", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f3e4b6f3-1724-4fc7-8db0-2914ef80c1c2"), new Guid("f86c5965-69c5-41df-a2ef-e8a1853a4d5d"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 170m, "Sefiller", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f47e4cb5-d03e-4bd6-b568-5e4333233cd9"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/5.jpg", 2000m, "Head Set", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f9694c31-cde3-4984-a088-45ea4d8c42a5"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 1000m, "Keyboard", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("fd760806-cd50-481a-a1a2-a6250d3fbe5c"), new Guid("28c75220-9cea-49c7-a6cc-7e02b815a69b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/3.jpg", 500m, "Mouse", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("0a1d2e31-42d0-4667-a0ec-a55fad5630a1"), new Guid("cece3fbf-d5f4-4524-b0ba-8408a9f343fe"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 170m, "Sefiller", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("0c7e7ba4-1e87-422a-a025-9f5abed43dcf"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 1000m, "Keyboard", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("24a9d68b-8eb5-46c3-b59a-f8ab5f11eb83"), new Guid("cece3fbf-d5f4-4524-b0ba-8408a9f343fe"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/6.jpg", 75m, "History", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("372773c3-1c81-4505-8744-86f5619bc275"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 20000m, "PC X10", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("61c31a4f-b5d0-44ad-9256-3ec348932633"), new Guid("cece3fbf-d5f4-4524-b0ba-8408a9f343fe"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/7.jpg", 100m, "Hamlet", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("923e1286-1953-4180-9715-0997ca579b38"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/1.jpg", 17000m, "Computer", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("ab9d080d-98a9-4fdb-b6fa-4f9720a7bce9"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/2.jpg", 300m, "Mechanic Keyboard", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b9242443-0801-4b2c-b698-3e05ab2cf2f5"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/4.jpg", 3700m, "Monitor", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("c29da861-5d03-474c-b5b4-df9185cf148a"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/3.jpg", 500m, "Mouse", true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("d2b0986b-3516-4ba5-96c5-5467a37914d9"), new Guid("162c91a4-7cbe-4bb0-aa32-f5f47f2b7e3b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "/images/5.jpg", 2000m, "Head Set", false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
